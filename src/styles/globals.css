@@ -1,0 +1,42 @@
+/* Global base overrides — scrollbar styling, selection colour, smooth scroll */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (Webkit) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F97316;
+}
+
+/* Hide scrollbar for filter bars while keeping scroll functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text selection colour */
+::selection {
+  background: #F97316;
+  color: #FFFFFF;
+}
+
+/* Focus visible outline using brand colour */
+:focus-visible {
+  outline: 2px solid #F97316;
+  outline-offset: 2px;
+}

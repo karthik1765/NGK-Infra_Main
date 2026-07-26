@@ -1,0 +1,369 @@
+import { Link } from "react-router";
+import { Phone, ArrowRight, Award, Home as HomeIcon, Calendar, ChevronRight, MapPin } from "lucide-react";
+import { useState } from "react";
+
+const STATS = [
+  { value: "150+", label: "Properties Sold" },
+  { value: "3+", label: "Awards Won" },
+  { value: "9+", label: "Years of Excellence" },
+  { value: "32", label: "Villa Units" },
+];
+
+const PROJECTS = [
+  {
+    name: "NGK INFRA Vantara",
+    location: "VIZAG",
+    type: "Premium Apartments",
+    units: "575 Units",
+    area: "6.5 Acres",
+    config: "2 & 3 BHK",
+    tag: "Adjacent to Reserve Forest",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=560&fit=crop&auto=format",
+    status: "Ongoing",
+  },
+  {
+    name: "NGK INFRA Villa Palazzo",
+    location: "VIZAG",
+    type: "Luxury Villas",
+    units: "32 Villas",
+    area: "8.26 Acres",
+    config: "4BHK + Home Theatre",
+    tag: "Premium Gated Community",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=560&fit=crop&auto=format",
+    status: "Ready to Move",
+  },
+  {
+    name: "NGK INFRA Vista",
+    location: "VIZAG",
+    type: "Residential Apartments",
+    units: "218 Flats",
+    area: "3 Acres",
+    config: "2 & 3 BHK",
+    tag: "Aster · Freesia · Peony",
+    image: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=560&fit=crop&auto=format",
+    status: "Ongoing",
+  },
+  {
+    name: "NGK INFRA Kailash",
+    location: "VIZAG",
+    type: "Open Plots",
+    units: "112 Plots",
+    area: "8.5 Acres",
+    config: "From 214 sq. yds",
+    tag: "10 mins from ORR",
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop&auto=format",
+    status: "Available",
+  },
+  {
+    name: "NGK INFRA Elegance",
+    location: "Gajuwaka, Vizag",
+    type: "Residential Apartment",
+    units: "96 Flats",
+    area: "1.8 Acres",
+    config: "2 & 3 BHK",
+    tag: "Completed",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=560&fit=crop&auto=format",
+    status: "Completed",
+  },
+  {
+    name: "NGK INFRA Blossom",
+    location: "Gajuwaka, Vizag",
+    type: "Residential Apartment",
+    units: "84 Flats",
+    area: "1.5 Acres",
+    config: "2 & 3 BHK",
+    tag: "Completed",
+    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=560&fit=crop&auto=format",
+    status: "Completed",
+  },
+];
+
+
+export default function Home() {
+  const [activeProject, setActiveProject] = useState(0);
+
+  return (
+    <>
+      {/* HERO */}
+      <section className="relative h-screen min-h-[640px] flex items-end pb-24">
+        <div className="absolute inset-0 bg-gray-900">
+          <img
+            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&h=900&fit=crop&auto=format"
+            alt="Luxury residential development"
+            className="w-full h-full object-cover opacity-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-transparent to-transparent" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-2xl">
+            <p className="text-primary text-xs tracking-[0.35em] uppercase mb-6 font-semibold">
+              Vizag · Since 2015
+            </p>
+            <h1
+              className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6 text-white"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              Home is where
+              <br />
+              <span className="text-primary">the heart is.</span>
+            </h1>
+            <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-lg">
+              We build you your heart with all our hearts — crafting premium
+              residences across Vizag that blend contemporary design with
+              enduring values.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="tel:+919398691219"
+                className="flex items-center gap-2 bg-primary text-white px-7 py-3.5 font-semibold hover:bg-[#EA580C] transition-all duration-200 rounded-sm"
+              >
+                <Phone size={16} />
+                +91 93986 91219
+              </a>
+              <Link
+                to="/projects"
+                className="flex items-center gap-2 border-2 border-white/40 text-white px-7 py-3.5 font-semibold hover:border-primary hover:text-primary transition-all duration-200 rounded-sm group"
+              >
+                View Projects
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+      </section>
+
+      {/* STATS */}
+      <section className="border-b border-border bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {STATS.map((stat, i) => (
+              <div key={i} className={`py-10 px-8 text-center ${
+                // On md+: border-r on all but last. On mobile 2-col: border-r only on odd indices (left column)
+                i < STATS.length - 1 ? (i % 2 === 0 ? "border-r border-border md:border-r border-border" : "md:border-r border-border") : ""
+              }`}>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  {stat.value}
+                </div>
+                <div className="text-xs tracking-[0.2em] text-[#6B7280] uppercase font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="py-24 px-6 bg-[#F9FAFB]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-semibold">01 — About Us</p>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6 text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              Building dreams<br /><span className="text-primary">across Vizag</span>
+            </h2>
+            <p className="text-[#6B7280] leading-relaxed mb-6">
+              NGK Infra is a real estate development and construction company that blends contemporary ideas
+              with historical values. Founded by Mr. Shreedhra Rao, we have delivered more than 30 projects
+              with unwavering focus on quality and timely possession.
+            </p>
+            <p className="text-[#6B7280] leading-relaxed mb-10">
+              From premium gated apartments adjacent to reserve forests to sprawling villa townships —
+              we craft spaces that evolve with Vizag's skyline while honoring every neighborhood's character.
+            </p>
+            <Link to="/about-us" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 font-semibold hover:bg-[#EA580C] transition-all duration-200 rounded-sm group">
+              Learn more <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-xl bg-[#F3F4F6]">
+              <img
+                src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=700&h=875&fit=crop&auto=format"
+                alt="NGK Infra development"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -left-6 bg-white border border-[#E5E7EB] p-6 w-48 shadow-lg">
+              <Award className="text-primary mb-2" size={22} />
+              <div className="text-2xl font-bold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>3+</div>
+              <div className="text-xs text-[#6B7280] tracking-wide mt-1">Industry Awards</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+            <div>
+              <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-semibold">02 — Our Portfolio</p>
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                Featured<br />Residences
+              </h2>
+            </div>
+            <Link to="/projects" className="flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-200 self-start md:self-auto group">
+              View all projects <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid lg:grid-cols-5 border border-[#E5E7EB]">
+            <div className="lg:col-span-3 relative aspect-[4/3] lg:aspect-auto overflow-hidden group bg-[#F3F4F6] min-h-[360px]">
+              <img
+                src={PROJECTS[activeProject].image}
+                alt={PROJECTS[activeProject].name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <span className="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 mb-3 rounded-sm">
+                  {PROJECTS[activeProject].status}
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  {PROJECTS[activeProject].name}
+                </h3>
+                <p className="text-white/70 text-sm flex items-center gap-1.5">
+                  <MapPin size={12} /> {PROJECTS[activeProject].location}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-2 divide-y divide-[#E5E7EB]">
+              {PROJECTS.map((p, i) => (
+                <button key={i} onClick={() => setActiveProject(i)}
+                  className={`w-full text-left p-5 flex items-start gap-4 transition-colors duration-200 ${activeProject === i ? "bg-orange-50" : "bg-white hover:bg-[#F9FAFB]"}`}
+                >
+                  <div className={`w-0.5 self-stretch mt-1 shrink-0 transition-colors ${activeProject === i ? "bg-primary" : "bg-[#E5E7EB]"}`} />
+                  <div className="min-w-0">
+                    <div className={`font-semibold text-sm truncate ${activeProject === i ? "text-primary" : "text-[#1F2937]"}`}>{p.name}</div>
+                    <div className="text-xs text-[#6B7280] mt-0.5">{p.type}</div>
+                    <div className="flex flex-wrap gap-3 mt-2">
+                      <span className="text-xs text-[#9CA3AF]">{p.units}</span>
+                      <span className="text-xs text-[#9CA3AF]">{p.config}</span>
+                    </div>
+                  </div>
+                  <ChevronRight size={14} className={`shrink-0 mt-1 ml-auto ${activeProject === i ? "text-primary" : "text-[#D1D5DB]"}`} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-[#F9FAFB] border border-t-0 border-[#E5E7EB] p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { label: "Area", value: PROJECTS[activeProject].area },
+              { label: "Units", value: PROJECTS[activeProject].units },
+              { label: "Configuration", value: PROJECTS[activeProject].config },
+              { label: "Highlight", value: PROJECTS[activeProject].tag },
+            ].map((d, i) => (
+              <div key={i}>
+                <div className="text-xs tracking-[0.15em] text-[#6B7280] uppercase mb-1 font-medium">{d.label}</div>
+                <div className="text-sm text-[#1F2937] font-semibold">{d.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY US */}
+      <section className="py-24 px-6 bg-[#F9FAFB]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-semibold">03 — Our Promise</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              Why NGK Infra?
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: <HomeIcon size={28} />, title: "Prime Locations", desc: "Every project is carefully positioned near infrastructure corridors, schools, and natural reserves — ensuring lasting value for your family." },
+              { icon: <Award size={28} />, title: "RERA Certified", desc: "Full regulatory compliance and transparent disclosures on every project. Your investment is protected at every stage of construction." },
+              { icon: <Calendar size={28} />, title: "On-Time Delivery", desc: "Nine years of consistent delivery without compromise. We meet our commitments because we plan them honestly from day one." },
+            ].map((item, i) => (
+              <div key={i} className="bg-white border border-[#E5E7EB] p-8 group hover:shadow-lg hover:border-primary/30 transition-all duration-300 rounded-sm">
+                <div className="w-14 h-14 bg-orange-50 flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300 rounded-sm">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold text-[#1F2937] mb-3" style={{ fontFamily: "'Montserrat', sans-serif" }}>{item.title}</h3>
+                <p className="text-[#6B7280] leading-relaxed text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 10+ AREAS SECTION ── */}
+      <section className="py-20 px-6 bg-[#F9FAFB]">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <p className="text-primary text-xs tracking-[0.35em] uppercase mb-3 font-semibold">Our Reach</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              We are available in{" "}
+              <span className="text-primary">10+ Areas</span>
+            </h2>
+            <p className="text-[#6B7280] mt-3 text-sm">
+              Building trust and delivering quality constructions across{" "}
+              <span className="text-primary font-semibold">Visakhapatnam</span>{" "}
+              and surrounding areas.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { name: "Gajuwaka", icon: "🏗️" },
+              { name: "Kommadi", icon: "🏘️" },
+              { name: "Rushikonda", icon: "🌊" },
+              { name: "Madhurawada", icon: "🏙️" },
+              { name: "Bheemunipatnam", icon: "🏖️" },
+              { name: "Pendurthi", icon: "🏡" },
+              { name: "Duvvada", icon: "🏢" },
+              { name: "Sabbavaram", icon: "🌿" },
+              { name: "Bheemili", icon: "⛵" },
+              { name: "Tagarapuvalasa", icon: "🏛️" },
+              { name: "Anakapalle", icon: "🏗️" },
+              { name: "Vizag City", icon: "🌆" },
+            ].map((area) => (
+              <Link
+                key={area.name}
+                to="/contact"
+                className="flex items-center gap-5 bg-white border border-[#E5E7EB] px-6 py-5 rounded-sm hover:border-primary hover:shadow-md transition-all duration-200 group"
+              >
+                <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center text-2xl shrink-0 group-hover:bg-primary/10 transition-colors duration-200">
+                  {area.icon}
+                </div>
+                <span className="text-base font-semibold text-[#1F2937] group-hover:text-primary transition-colors duration-200">
+                  {area.name}
+                </span>
+                <ArrowRight size={16} className="ml-auto text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA CONTACT BAND */}
+      <section className="relative py-24 px-6 overflow-hidden bg-stone-900">
+        <div className="absolute inset-0 opacity-10">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=600&fit=crop&auto=format"
+            alt="NGK Infra office"
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto text-center">
+          <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-semibold">04 — Get in Touch</p>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            Ready to find<br /><span className="text-primary">your home?</span>
+          </h2>
+          <p className="text-white/60 max-w-lg mx-auto mb-12 leading-relaxed">
+            Speak with our sales team and explore the right residence for your family. We&apos;re here every step of the way.
+          </p>
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 font-semibold hover:bg-[#EA580C] transition-all duration-200 rounded-sm group">
+            Contact Us <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
