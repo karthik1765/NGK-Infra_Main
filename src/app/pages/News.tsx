@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import { ArrowRight, Calendar } from "lucide-react";
+
+import { Calendar } from "lucide-react";
 
 const NEWS = [
   {
