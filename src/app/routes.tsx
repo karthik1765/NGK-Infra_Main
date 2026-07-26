@@ -14,6 +14,7 @@ export const router = createBrowserRouter([
     Component: Layout,
     children: [
       { index: true, Component: Home },
+      { path: "home", element: <Navigate to="/" replace /> },
       { path: "about-us", Component: About },
       { path: "about", element: <Navigate to="/about-us" replace /> },
       { path: "projects", Component: Projects },
