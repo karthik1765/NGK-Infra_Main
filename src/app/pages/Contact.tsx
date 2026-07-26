@@ -5,36 +5,20 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", interest: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // We use FormSubmit.co API to send the email directly in the background
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/ngkinfra99@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          Name: form.name,
-          Phone: form.phone,
-          Email: form.email || "Not provided",
-          "Interested In": form.interest || "Not specified",
-          Message: form.message || "No message provided",
-          _subject: `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
-          _template: "table" // Uses a nice table layout in the email
-        })
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        alert("Oops! Something went wrong while sending your enquiry. Please try again.");
-      }
-    } catch (error) {
-      alert("Network error. Please check your internet connection and try again.");
-    }
+    const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
+    const body = encodeURIComponent(
+      `New enquiry from NGK Infra website.\n\n` +
+      `Name: ${form.name}\n` +
+      `Phone: ${form.phone}\n` +
+      `Email: ${form.email || "Not provided"}\n` +
+      `Interested In: ${form.interest || "Not specified"}\n\n` +
+      `Message:\n${form.message || "No message provided"}`
+    );
+    window.location.href = `mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`;
+    // Delay success state so the mailto link can open before UI changes
+    setTimeout(() => setSubmitted(true), 500);
   };
 
   return (
