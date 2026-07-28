@@ -68,12 +68,10 @@ export default function Layout() {
                 to={to}
                 end={to === "/"}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors duration-200 ${
+                  `text-sm font-semibold transition-all duration-200 text-primary relative pb-0.5 ${
                     isActive
-                      ? "text-primary"
-                      : navSolid
-                      ? "text-[#374151] hover:text-primary"
-                      : "text-white/90 hover:text-white"
+                      ? "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:rounded-full"
+                      : "hover:opacity-80"
                   }`
                 }
               >

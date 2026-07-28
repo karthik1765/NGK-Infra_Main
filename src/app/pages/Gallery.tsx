@@ -5,20 +5,20 @@ import { X, ZoomIn } from "lucide-react";
 const CATEGORIES = ["All", "Apartments", "Villas", "Plots", "Interiors"];
 
 const GALLERY_ITEMS = [
-  { src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&auto=format", title: "NGK Vantara — Exterior", cat: "Apartments", span: "col-span-2" },
+  { src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&auto=format", title: "NGK", cat: "Apartments", span: "col-span-2" },
   { src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=600&fit=crop&auto=format", title: "Villa Palazzo — Night View", cat: "Villas", span: "" },
   { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=600&fit=crop&auto=format", title: "Villa Palazzo — Day View", cat: "Villas", span: "" },
   { src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=600&fit=crop&auto=format", title: "NGK Elegance — Lobby", cat: "Interiors", span: "" },
-  { src: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=600&fit=crop&auto=format", title: "NGK Vista — Kitchen", cat: "Interiors", span: "" },
-  { src: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=600&fit=crop&auto=format", title: "NGK Vista — Tower View", cat: "Apartments", span: "col-span-2" },
-  { src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=600&fit=crop&auto=format", title: "NGK Kailash — Plot Layout", cat: "Plots", span: "" },
-  { src: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&h=600&fit=crop&auto=format", title: "NGK Blossom — Garden", cat: "Apartments", span: "" },
+  { src: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=600&fit=crop&auto=format", title: "NGK — Kitchen", cat: "Interiors", span: "" },
+  { src: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=600&fit=crop&auto=format", title: "NGK — Tower View", cat: "Apartments", span: "col-span-2" },
+  { src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=600&fit=crop&auto=format", title: "NGK — Plot Layout", cat: "Plots", span: "" },
+  { src: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&h=600&fit=crop&auto=format", title: "NGK — Garden", cat: "Apartments", span: "" },
   { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&auto=format", title: "NGK Iris — Living Room", cat: "Interiors", span: "col-span-2" },
   { src: "https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?w=600&h=600&fit=crop&auto=format", title: "NGK Flora — Facade", cat: "Apartments", span: "" },
   { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop&auto=format", title: "Villa Palazzo — Master Suite", cat: "Interiors", span: "" },
-  { src: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=600&fit=crop&auto=format", title: "NGK Kailash — Road View", cat: "Plots", span: "" },
-  { src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=600&fit=crop&auto=format", title: "NGK Vista — Bathroom", cat: "Interiors", span: "" },
-  { src: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&h=600&fit=crop&auto=format", title: "NGK Vantara — Pool View", cat: "Apartments", span: "col-span-2" },
+  { src: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=600&fit=crop&auto=format", title: "NGK  — Road View", cat: "Plots", span: "" },
+  { src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=600&fit=crop&auto=format", title: "NGK — Bathroom", cat: "Interiors", span: "" },
+  { src: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&h=600&fit=crop&auto=format", title: "NGK  — Pool View", cat: "Apartments", span: "col-span-2" },
 ];
 
 export default function Gallery() {
@@ -70,11 +70,10 @@ export default function Gallery() {
             <button
               key={c}
               onClick={() => setActiveFilter(c)}
-              className={`px-5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-sm ${
-                activeFilter === c
+              className={`px-5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-sm ${activeFilter === c
                   ? "bg-primary text-primary-foreground"
                   : "text-[#6B7280] hover:text-primary border border-transparent hover:border-[#E5E7EB]"
-              }`}
+                }`}
             >
               {c}
             </button>
@@ -89,9 +88,8 @@ export default function Gallery() {
             {filtered.map((item, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden bg-[#F3F4F6] group cursor-pointer ${
-                  item.span === "col-span-2" ? "col-span-2" : ""
-                }`}
+                className={`relative overflow-hidden bg-[#F3F4F6] group cursor-pointer ${item.span === "col-span-2" ? "col-span-2" : ""
+                  }`}
                 onClick={() => setLightbox(i)}
               >
                 <img

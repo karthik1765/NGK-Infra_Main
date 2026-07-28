@@ -1,6 +1,29 @@
 import { Link } from "react-router";
 import { Phone, ArrowRight, Award, Home as HomeIcon, Calendar, ChevronRight, MapPin } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const HERO_SLIDES = [
+  {
+    src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop&auto=format",
+    alt: "Luxury villa with pool",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=900&fit=crop&auto=format",
+    alt: "Premium apartment exterior",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=900&fit=crop&auto=format",
+    alt: "Villa Palazzo night view",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1200&h=900&fit=crop&auto=format",
+    alt: "Residential tower view",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=900&fit=crop&auto=format",
+    alt: "Premium interior living room",
+  },
+];
 
 const STATS = [
   { value: "150+", label: "Properties Sold" },
@@ -81,6 +104,15 @@ const PROJECTS = [
 
 export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
+
+  // Auto-advance hero slideshow every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -125,15 +157,35 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT — Image */}
+            {/* RIGHT — Auto Slideshow */}
             <div className="relative h-[480px] lg:h-[calc(100vh-80px)] overflow-hidden rounded-tl-[3rem] rounded-bl-[3rem] lg:rounded-tl-[4rem] lg:rounded-bl-[4rem]">
-              <img
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop&auto=format"
-                alt="Luxury residential development"
-                className="w-full h-full object-cover"
-              />
-              {/* subtle orange accent bar at bottom */}
+              {HERO_SLIDES.map((slide, idx) => (
+                <img
+                  key={idx}
+                  src={slide.src}
+                  alt={slide.alt}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                    idx === heroSlide ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+              {/* Orange accent bar */}
               <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-primary" />
+              {/* Dot indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                {HERO_SLIDES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setHeroSlide(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      idx === heroSlide
+                        ? "bg-primary w-6"
+                        : "bg-white/60 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
           </div>
