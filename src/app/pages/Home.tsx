@@ -98,9 +98,17 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
-            <p className="text-primary text-xs tracking-[0.35em] uppercase mb-6 font-semibold">
-              Vizag · Since 2015
-            </p>
+            <div className="mb-6">
+              <p
+                className="text-primary font-bold tracking-[0.25em] uppercase leading-tight"
+                style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.35rem)" }}
+              >
+                NGK INFRA DEVELOPERS
+              </p>
+              <p className="text-white/60 text-xs tracking-[0.3em] uppercase mt-1 font-medium">
+                Real Estate · Vizag..
+              </p>
+            </div>
             <h1
               className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6 text-white"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
