@@ -85,53 +85,61 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-screen min-h-[640px] flex items-end pb-24">
-        <div className="absolute inset-0 bg-gray-900">
-          <img
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&h=900&fit=crop&auto=format"
-            alt="Luxury residential development"
-            className="w-full h-full object-cover opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/55 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-transparent to-transparent" />
-        </div>
+      <section className="bg-white pt-24 pb-0 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-80px)]">
 
-        <div className="relative max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-2xl">
-
-            <h1
-              className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6 text-white"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              Home is where
-              <br />
-              <span className="text-primary">the heart is.</span>
-            </h1>
-            <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-lg">
-              We build you your heart with all our hearts — crafting premium
-              residences across Vizag that blend contemporary design with
-              enduring values.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="tel:+919398691219"
-                className="flex items-center gap-2 bg-primary text-white px-7 py-3.5 font-semibold hover:bg-[#EA580C] transition-all duration-200 rounded-sm"
+            {/* LEFT — Text */}
+            <div className="flex flex-col justify-center py-12 lg:py-20">
+              <p className="text-[#6B7280] text-sm font-medium mb-4 tracking-wide">
+                NGK Infra Developers
+              </p>
+              <h1
+                className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 text-[#1F2937] uppercase"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                <Phone size={16} />
-                +91 93986 91219
-              </a>
-              <Link
-                to="/projects"
-                className="flex items-center gap-2 border-2 border-white/40 text-white px-7 py-3.5 font-semibold hover:border-primary hover:text-primary transition-all duration-200 rounded-sm group"
-              >
-                View Projects
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+                Home is where
+                <br />
+                <span className="text-primary">the heart is.</span>
+              </h1>
+              <p className="text-[#6B7280] text-base leading-relaxed mb-10 max-w-md">
+                We build you your heart with all our hearts — crafting premium
+                residences across Vizag that blend contemporary design with
+                enduring values.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="tel:+919398691219"
+                  className="flex items-center gap-2 bg-primary text-white px-7 py-3.5 font-semibold hover:bg-[#EA580C] transition-all duration-200 rounded-full"
+                >
+                  <Phone size={16} />
+                  Call Now
+                </a>
+                <Link
+                  to="/projects"
+                  className="flex items-center gap-2 border-2 border-[#E5E7EB] text-[#1F2937] px-7 py-3.5 font-semibold hover:border-primary hover:text-primary transition-all duration-200 rounded-full group"
+                >
+                  View More
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
+
+            {/* RIGHT — Image */}
+            <div className="relative h-[480px] lg:h-[calc(100vh-80px)] overflow-hidden rounded-tl-[3rem] rounded-bl-[3rem] lg:rounded-tl-[4rem] lg:rounded-bl-[4rem]">
+              <img
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop&auto=format"
+                alt="Luxury residential development"
+                className="w-full h-full object-cover"
+              />
+              {/* subtle orange accent bar at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-primary" />
+            </div>
+
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
       </section>
+
 
       {/* STATS */}
       <section className="border-b border-border bg-white">
