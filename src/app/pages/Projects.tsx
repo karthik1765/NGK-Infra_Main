@@ -6,7 +6,7 @@ const FILTERS = ["All", "Ongoing", "Ready to Move", "Available", "Completed"];
 
 const PROJECTS = [
   {
-    name: "NGK INFRA Vantara",
+    name: "NGK Project 1",
     location: "VIZAG",
     type: "Premium Apartments",
     units: "575 Units",
@@ -19,7 +19,7 @@ const PROJECTS = [
     desc: "A landmark residential community set against the backdrop of a vast reserve forest. Vantara offers 575 thoughtfully designed 2 & 3 BHK apartments across 6.5 acres of prime land.",
   },
   {
-    name: "NGK INFRA Villa Palazzo",
+    name: "NGK Project 2",
     location: "VIZAG",
     type: "Luxury Villas",
     units: "32 Villas",
@@ -32,7 +32,7 @@ const PROJECTS = [
     desc: "An exclusive collection of 32 ultra-luxury 4BHK villas with dedicated home theatres. Villa Palazzo redefines premium living in Vizag with meticulous craftsmanship and world-class amenities.",
   },
   {
-    name: "NGK INFRA Vista",
+    name: "NGK Project 3",
     location: "VIZAG",
     type: "Residential Apartments",
     units: "218 Flats",
@@ -45,7 +45,7 @@ const PROJECTS = [
     desc: "Vista comprises 218 flats across three distinct towers — Aster, Freesia, and Peony. Each tower offers a unique floor plan variant to suit different lifestyle needs.",
   },
   {
-    name: "NGK INFRA Kailash",
+    name: "NGK Project 4",
     location: "VIZAG",
     type: "Open Plots",
     units: "112 Plots",
@@ -58,7 +58,7 @@ const PROJECTS = [
     desc: "Build your dream home on your terms. NGK Infra Kailash offers 112 open plots starting from 214 sq. yards — a rare plotted development with full infrastructure in place.",
   },
   {
-    name: "NGK INFRA Elegance",
+    name: "NGK Project 5",
     location: "Gajuwaka, Vizag",
     type: "Residential Apartment",
     units: "96 Flats",
@@ -71,7 +71,7 @@ const PROJECTS = [
     desc: "Elegance set a new benchmark for luxury apartments in Gajuwaka. Every unit was delivered with premium finishes and sophisticated design — a testament to NGK's quality promise.",
   },
   {
-    name: "NGK INFRA Blossom",
+    name: "NGK Project 6",
     location: "Gajuwaka, Vizag",
     type: "Residential Apartment",
     units: "84 Flats",
@@ -84,7 +84,7 @@ const PROJECTS = [
     desc: "Blossom was designed as a sanctuary within the city. With serene landscapes and modern living spaces, all 84 flats were delivered to satisfied homeowners on schedule.",
   },
   {
-    name: "NGK INFRA Flora",
+    name: "NGK Project 7",
     location: "VIZAG",
     type: "Residential Apartment",
     units: "72 Flats",
@@ -97,7 +97,7 @@ const PROJECTS = [
     desc: "Flora was an award-winning project that combined elegant architecture with a nature-inspired design philosophy. The central courtyard became a beloved community space.",
   },
   {
-    name: "NGK INFRA Iris",
+    name: "NGK Project 8",
     location: "VIZAG",
     type: "Residential Apartment",
     units: "60 Flats",
@@ -129,7 +129,7 @@ export default function Projects() {
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&h=500&fit=crop&auto=format"
-            alt="NGK Infra projects"
+            alt="NGK Infra Developers Projects"
             className="w-full h-full object-cover opacity-25"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-stone-900/40" />
@@ -150,11 +150,10 @@ export default function Projects() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-sm ${
-                filter === f
+              className={`px-5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-sm ${filter === f
                   ? "bg-primary text-primary-foreground"
                   : "text-[#6B7280] hover:text-primary border border-transparent hover:border-[#E5E7EB]"
-              }`}
+                }`}
             >
               {f}
             </button>

@@ -11,9 +11,9 @@ const STATS = [
 
 const PROJECTS = [
   {
-    name: "NGK INFRA Vantara",
+    name: "NGK Project 1",
     location: "VIZAG",
-    type: "Premium Apartments",
+    type: "Plots & Premium Apartments",
     units: "575 Units",
     area: "6.5 Acres",
     config: "2 & 3 BHK",
@@ -22,7 +22,7 @@ const PROJECTS = [
     status: "Ongoing",
   },
   {
-    name: "NGK INFRA Villa Palazzo",
+    name: "NGK Project 2",
     location: "VIZAG",
     type: "Luxury Villas",
     units: "32 Villas",
@@ -33,7 +33,7 @@ const PROJECTS = [
     status: "Ready to Move",
   },
   {
-    name: "NGK INFRA Vista",
+    name: "NGK Project 3",
     location: "VIZAG",
     type: "Residential Apartments",
     units: "218 Flats",
@@ -44,7 +44,7 @@ const PROJECTS = [
     status: "Ongoing",
   },
   {
-    name: "NGK INFRA Kailash",
+    name: "NGK Project 4",
     location: "VIZAG",
     type: "Open Plots",
     units: "112 Plots",
@@ -55,7 +55,7 @@ const PROJECTS = [
     status: "Available",
   },
   {
-    name: "NGK INFRA Elegance",
+    name: "NGK Project 5",
     location: "Gajuwaka, Vizag",
     type: "Residential Apartment",
     units: "96 Flats",
@@ -66,7 +66,7 @@ const PROJECTS = [
     status: "Completed",
   },
   {
-    name: "NGK INFRA Blossom",
+    name: "NGK Project 6",
     location: "Gajuwaka, Vizag",
     type: "Residential Apartment",
     units: "84 Flats",
@@ -142,7 +142,7 @@ export default function Home() {
             {STATS.map((stat, i) => (
               <div key={i} className={`py-10 px-8 text-center ${
                 // On md+: border-r on all but last. On mobile 2-col: border-r only on odd indices (left column)
-                i < STATS.length - 1 ? (i % 2 === 0 ? "border-r border-border md:border-r border-border" : "md:border-r border-border") : ""
+                i < STATS.length - 1 ? (i % 2 === 0 ? "border-r border-border" : "md:border-r border-border") : ""
               }`}>
                 <div className="text-4xl md:text-5xl font-bold text-primary mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   {stat.value}
@@ -163,7 +163,7 @@ export default function Home() {
               Building dreams<br /><span className="text-primary">across Vizag</span>
             </h2>
             <p className="text-[#6B7280] leading-relaxed mb-6">
-              NGK Infra is a real estate development and construction company that blends contemporary ideas
+              NGK Infra Developers is a real estate development and construction company that blends contemporary ideas
               with historical values. Founded by Mr. Shreedhra Rao, we have delivered more than 30 projects
               with unwavering focus on quality and timely possession.
             </p>
@@ -179,7 +179,7 @@ export default function Home() {
             <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-xl bg-[#F3F4F6]">
               <img
                 src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=700&h=875&fit=crop&auto=format"
-                alt="NGK Infra development"
+                alt="NGK Infra Developers"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
@@ -271,7 +271,7 @@ export default function Home() {
           <div className="text-center mb-14">
             <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-semibold">03 — Our Promise</p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              Why NGK Infra?
+              Why NGK Infra Developers?
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -310,29 +310,29 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { name: "Gajuwaka", icon: "🏗️" },
-              { name: "Kommadi", icon: "🏘️" },
-              { name: "Rushikonda", icon: "🌊" },
-              { name: "Madhurawada", icon: "🏙️" },
-              { name: "Bheemunipatnam", icon: "🏖️" },
-              { name: "Pendurthi", icon: "🏡" },
-              { name: "Duvvada", icon: "🏢" },
-              { name: "Sabbavaram", icon: "🌿" },
-              { name: "Bheemili", icon: "⛵" },
-              { name: "Tagarapuvalasa", icon: "🏛️" },
-              { name: "Anakapalle", icon: "🏗️" },
-              { name: "Vizag City", icon: "🌆" },
+              "Gajuwaka",
+              "Kommadi",
+              "Rushikonda",
+              "Madhurawada",
+              "Bheemunipatnam",
+              "Pendurthi",
+              "Duvvada",
+              "Sabbavaram",
+              "Bheemili",
+              "Tagarapuvalasa",
+              "Anakapalle",
+              "Vizag City",
             ].map((area) => (
               <Link
-                key={area.name}
+                key={area}
                 to="/contact"
                 className="flex items-center gap-5 bg-white border border-[#E5E7EB] px-6 py-5 rounded-sm hover:border-primary hover:shadow-md transition-all duration-200 group"
               >
-                <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center text-2xl shrink-0 group-hover:bg-primary/10 transition-colors duration-200">
-                  {area.icon}
+                <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors duration-200 text-primary">
+                  <MapPin size={22} />
                 </div>
                 <span className="text-base font-semibold text-[#1F2937] group-hover:text-primary transition-colors duration-200">
-                  {area.name}
+                  {area}
                 </span>
                 <ArrowRight size={16} className="ml-auto text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
               </Link>
@@ -346,7 +346,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=600&fit=crop&auto=format"
-            alt="NGK Infra office"
+            alt="NGK Infra Developers office"
             loading="lazy"
             className="w-full h-full object-cover"
           />

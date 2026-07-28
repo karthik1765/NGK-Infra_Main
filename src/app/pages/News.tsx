@@ -5,14 +5,14 @@ import { Calendar } from "lucide-react";
 const NEWS = [
   {
     title: "Celebrating 9 Years of Excellence",
-    date: "March 2024",
+    date: "March 2017",
     category: "Company Milestone",
-    excerpt: "NGK Infra marks nine years of delivering premium residences across Vizag. From our first project in 2015 to over 30 completed developments — we reflect on a journey built on quality, trust, and community.",
+    excerpt: "NGK Infra Developers marks nine years of delivering premium residences across Vizag. From our first project in 2015 to over 30 completed developments — we reflect on a journey built on quality, trust, and community.",
     image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=500&fit=crop&auto=format",
     featured: true,
   },
   {
-    title: "NGK Infra Villa Palazzo Grand Opening",
+    title: "NGK Project 2",
     date: "January 2024",
     category: "Project Launch",
     excerpt: "Our most exclusive offering yet — 32 ultra-luxury 4BHK villas with private home theatres. The Villa Palazzo grand opening celebrated a new benchmark for premium living in Vizag.",
@@ -20,7 +20,7 @@ const NEWS = [
     featured: false,
   },
   {
-    title: "NGK Elegance — Possession Ceremony",
+    title: "NGK Project 3",
     date: "November 2023",
     category: "Possession",
     excerpt: "Homeowners of NGK Elegance received their keys at a joyful possession ceremony. The project, located in Gajuwaka, was delivered ahead of schedule — continuing NGK Infra's tradition of on-time handovers.",
@@ -29,7 +29,7 @@ const NEWS = [
   },
   {
     title: "The Rise of Sustainable Living in Vizag",
-    date: "October 2023",
+    date: "October 2020",
     category: "Industry Insight",
     excerpt: "Vizag is rapidly emerging as an eco-friendly housing hub. We explore how green building practices, solar energy integration, and natural ventilation design are reshaping residential development in the city.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop&auto=format",
@@ -44,8 +44,8 @@ const NEWS = [
     featured: false,
   },
   {
-    title: "NGK Infra Vista — Few Units Remaining",
-    date: "August 2023",
+    title: "NGK Project 6",
+    date: "August 2025",
     category: "Project Update",
     excerpt: "The NGK Vista project in Kompally is nearly sold out across all three towers — Aster, Freesia, and Peony. A limited number of 3 BHK units remain. Register your interest before possession begins.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=500&fit=crop&auto=format",
@@ -53,18 +53,10 @@ const NEWS = [
   },
   {
     title: "The Future of Urban Mobility in Tier-2 Cities",
-    date: "July 2023",
+    date: "July 2026",
     category: "Industry Insight",
     excerpt: "Electric buses, autonomous vehicles, and integrated transit networks are transforming how residents experience city living. We examine what this means for residential location value in Vizag.",
     image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=500&fit=crop&auto=format",
-    featured: false,
-  },
-  {
-    title: "NGK Infra Wins Best Developer Award 2023",
-    date: "May 2023",
-    category: "Awards",
-    excerpt: "For the third consecutive time, NGK Infra has been recognised as a leading residential developer in Vizag at the Andhra Pradesh Real Estate Awards. A reflection of our team's dedication and homebuyers' trust.",
-    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=500&fit=crop&auto=format",
     featured: false,
   },
 ];
@@ -86,7 +78,7 @@ export default function News() {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    const subject = encodeURIComponent("Newsletter Subscription — NGK Infra");
+    const subject = encodeURIComponent("Newsletter Subscription — NGK Infra Developers");
     const body = encodeURIComponent(`New newsletter subscription request.\n\nEmail: ${email}\n\nPlease add this subscriber to your mailing list.`);
     window.location.href = `mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`;
   };
@@ -98,7 +90,7 @@ export default function News() {
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&h=500&fit=crop&auto=format"
-            alt="NGK Infra news"
+            alt="NGK Infra Developers News"
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-stone-900/40" />
@@ -138,39 +130,39 @@ export default function News() {
           {/* GRID */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
             {rest.map((article, i) => {
-              const subject = encodeURIComponent(`Enquiry: ${article.title} — NGK Infra`);
-              const body = encodeURIComponent(`Hello NGK Infra,\n\nI read your article "${article.title}" and would like to know more.\n\nPlease get in touch with me.`);
+              const subject = encodeURIComponent(`Enquiry: ${article.title} — NGK Infra Developers`);
+              const body = encodeURIComponent(`Hello NGK Infra Developers,\n\nI read your article "${article.title}" and would like to know more.\n\nPlease get in touch with me.`);
               return (
-              <a
-                key={i}
-                href={`mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`}
-                className="bg-white border border-[#E5E7EB] group hover:border-primary/30 hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer block no-underline"
-              >
-                <div className="aspect-[16/9] overflow-hidden bg-[#F3F4F6]">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`text-xs font-medium px-2.5 py-0.5 border ${CAT_COLORS[article.category] || "text-[#6B7280] border-[#E5E7EB]"}`}>
-                      {article.category}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-xs text-[#6B7280]">
-                      <Calendar size={11} /> {article.date}
-                    </span>
+                <a
+                  key={i}
+                  href={`mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`}
+                  className="bg-white border border-[#E5E7EB] group hover:border-primary/30 hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer block no-underline"
+                >
+                  <div className="aspect-[16/9] overflow-hidden bg-[#F3F4F6]">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
-                  <h3 className="text-lg font-semibold text-[#1F2937] mb-2 leading-snug group-hover:text-primary transition-colors" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-3">{article.excerpt}</p>
-                  <p className="text-xs text-primary mt-3 font-medium group-hover:underline">Read more →</p>
-                </div>
-              </a>
-            );
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`text-xs font-medium px-2.5 py-0.5 border ${CAT_COLORS[article.category] || "text-[#6B7280] border-[#E5E7EB]"}`}>
+                        {article.category}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-xs text-[#6B7280]">
+                        <Calendar size={11} /> {article.date}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#1F2937] mb-2 leading-snug group-hover:text-primary transition-colors" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-3">{article.excerpt}</p>
+                    <p className="text-xs text-primary mt-3 font-medium group-hover:underline">Read more →</p>
+                  </div>
+                </a>
+              );
             })}
           </div>
         </div>

@@ -13,7 +13,7 @@ const TEAM = [
   {
     name: "Mr. Shreedhra Rao Yandrapu",
     role: "Executive Chairman & MD / Marketing Head",
-    desc: "Over 12 years in real estate. Delivered more than 30 projects across Parvathipuram, Bobbili and Vizag with an uncompromising focus on quality.",
+    desc: "Over 12 years in real estate. Delivered more than 30 projects across Vizag, Parvathipuram and Bobbili with an uncompromising focus on quality.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function About() {
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&h=600&fit=crop&auto=format"
-            alt="NGK Infra building"
+            alt="NGK Infra Developers building"
             className="w-full h-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-stone-900/50" />
@@ -61,7 +61,7 @@ export default function About() {
             className="text-5xl md:text-6xl font-semibold text-white"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            About NGK Infra
+            About NGK Infra Developers
           </h1>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
@@ -87,7 +87,7 @@ export default function About() {
               </em>
             </h2>
             <p className="text-[#6B7280] leading-relaxed mb-5">
-              NGK Infra was founded with a single belief: that
+              NGK Infra Developers was founded with a single belief: that
               every family deserves a home built with integrity.
               Starting from the northern corridor of Vizag, we
               have grown to become one of the most trusted real
@@ -103,7 +103,7 @@ export default function About() {
               founding commitment.
             </p>
             <p className="text-[#6B7280] leading-relaxed">
-              Today, NGK Infra is a dominant force in Vizag real
+              Today, NGK Infra Developers is a dominant force in Vizag real
               estate — known for premium gated apartments,
               luxury villa communities, and thoughtfully
               designed plotted developments that grow in value
@@ -115,7 +115,7 @@ export default function About() {
             <div className="aspect-video bg-[#F3F4F6] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop&auto=format"
-                alt="NGK Infra project site"
+                alt="NGK Infra Developers project site"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
@@ -164,7 +164,7 @@ export default function About() {
                 Our Mission
               </h3>
               <p className="text-[#6B7280] leading-relaxed">
-                To deliver quality residential projects with
+                To deliver quality Plots & Residential projects with
                 timely handover and an outstanding purchase
                 journey — ensuring that every homebuyer feels
                 valued, informed, and proud of their investment.
@@ -183,7 +183,7 @@ export default function About() {
               <p className="text-[#6B7280] leading-relaxed">
                 To become Vizag's leading developer known for
                 excellence, innovation, and the lasting pride of
-                resident communities — where every NGK address
+                resident communities — where every NGK Infra Developers address
                 is synonymous with quality living.
               </p>
             </div>
@@ -238,7 +238,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-medium">
-              The People Behind NGK
+              The People Behind NGK Infra Developers
             </p>
             <h2
               className="text-3xl md:text-4xl font-bold text-[#1F2937]"

@@ -203,12 +203,9 @@ export default function Contact() {
                     <option value="" disabled>Select a project type</option>
                     <option>2 BHK Apartment</option>
                     <option>3 BHK Apartment</option>
-                    <option>4 BHK Villa</option>
                     <option>Open Plot</option>
-                    <option>NGK Vantara</option>
-                    <option>Villa Palazzo</option>
-                    <option>NGK Vista</option>
-                    <option>NGK Kailash</option>
+                    <option>Villa</option>
+                    <option>Other</option>
                   </select>
                 </div>
 
@@ -246,7 +243,7 @@ export default function Contact() {
           <div className="flex items-center gap-2 mb-4">
             <MapPin className="text-primary shrink-0" size={18} />
             <div>
-              <p className="text-sm font-semibold text-[#1F2937]">NGK Infra Office</p>
+              <p className="text-sm font-semibold text-[#1F2937]">NGK Infra Developers Office</p>
               <p className="text-xs text-[#6B7280]">Vizag, Andhra Pradesh</p>
             </div>
           </div>
