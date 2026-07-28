@@ -55,7 +55,7 @@ export default function Layout() {
               >
                 NGK INFRA DEVELOPERS
               </span>
-              <span className={`text-[9px] tracking-[0.28em] uppercase font-semibold ${navSolid ? "text-[#1F2937]" : "text-white"}`}>
+              <span className="text-[9px] tracking-[0.28em] uppercase font-semibold text-[#1F2937]">
                 Real Estate · Vizag
               </span>
             </div>
