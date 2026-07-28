@@ -123,7 +123,7 @@ export default function Home() {
 
             {/* LEFT — Text */}
             <div className="flex flex-col justify-center py-12 lg:py-20">
-              <p className="text-[#6B7280] text-sm font-medium mb-4 tracking-wide">
+              <p className="text-[#1F2937] text-sm font-semibold mb-4 tracking-wide">
                 NGK Infra Developers
               </p>
               <h1
