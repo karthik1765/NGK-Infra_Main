@@ -50,10 +50,13 @@ export default function Layout() {
             />
             <div className="flex flex-col leading-tight">
               <span
-                className="text-xl font-bold tracking-wider text-primary"
+                className="text-lg font-bold tracking-wider text-primary"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                NGK INFRA
+                NGK INFRA DEVELOPERS
+              </span>
+              <span className={`text-[9px] tracking-[0.28em] uppercase font-medium ${navSolid ? "text-[#6B7280]" : "text-white/70"}`}>
+                Real Estate · Vizag
               </span>
             </div>
           </Link>
