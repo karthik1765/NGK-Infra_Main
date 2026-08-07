@@ -164,9 +164,8 @@ export default function Home() {
                   key={idx}
                   src={slide.src}
                   alt={slide.alt}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                    idx === heroSlide ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${idx === heroSlide ? "opacity-100" : "opacity-0"
+                    }`}
                 />
               ))}
               {/* Orange accent bar */}
@@ -178,11 +177,10 @@ export default function Home() {
                     key={idx}
                     onClick={() => setHeroSlide(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      idx === heroSlide
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === heroSlide
                         ? "bg-primary w-6"
                         : "bg-white/60 hover:bg-white"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -201,7 +199,7 @@ export default function Home() {
               <div key={i} className={`py-10 px-8 text-center ${
                 // On md+: border-r on all but last. On mobile 2-col: border-r only on odd indices (left column)
                 i < STATS.length - 1 ? (i % 2 === 0 ? "border-r border-border" : "md:border-r border-border") : ""
-              }`}>
+                }`}>
                 <div className="text-4xl md:text-5xl font-bold text-primary mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   {stat.value}
                 </div>
