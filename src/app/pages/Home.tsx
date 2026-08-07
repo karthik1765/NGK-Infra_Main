@@ -364,47 +364,49 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {[
-              { name: "Gajuwaka",        img: "/areas/gajuwaka.png" },
-              { name: "Kommadi",         img: "/areas/kommadi.png" },
-              { name: "Rushikonda",      img: "/areas/rushikonda.png" },
-              { name: "Madhurawada",     img: "/areas/madhurawada.png" },
-              { name: "Bheemunipatnam",  img: "/areas/bheemunipatnam.png" },
-              { name: "Pendurthi",       img: "/areas/pendurthi.png" },
-              { name: "Duvvada",         img: "/areas/duvvada.png" },
-              { name: "Sabbavaram",      img: "/areas/sabbavaram.png" },
-              { name: "Beach Oriented",  img: "/areas/beach_oriented.png" },
-              { name: "Tagarapuvalasa",  img: "/areas/tagarapuvalasa.png" },
-              { name: "Anakapalle",      img: "/areas/anakapalle.png" },
-              { name: "Vizag City",      img: "/areas/vizag_city.png" },
-            ].map((area) => (
-              <Link
-                key={area.name}
-                to="/contact"
-                className="bg-white border border-[#E5E7EB] rounded-sm overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-200 group"
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden bg-orange-50" style={{ aspectRatio: "4/3" }}>
-                  <img
-                    src={area.img}
-                    alt={area.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  {/* subtle orange overlay on hover */}
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300" />
-                </div>
-                {/* Footer */}
-                <div className="flex items-center gap-2 px-3 py-3">
-                  <MapPin size={14} className="text-primary shrink-0" />
-                  <span className="text-sm font-semibold text-[#1F2937] group-hover:text-primary transition-colors duration-200 truncate">
-                    {area.name}
-                  </span>
-                  <ArrowRight size={13} className="ml-auto text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
-                </div>
-              </Link>
-            ))}
+          {/* 4 per row × 3 rows = 12 cities, centered */}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-4xl">
+              {[
+                { name: "Gajuwaka",        img: "/areas/gajuwaka.png" },
+                { name: "Kommadi",         img: "/areas/kommadi.png" },
+                { name: "Rushikonda",      img: "/areas/rushikonda.png" },
+                { name: "Madhurawada",     img: "/areas/madhurawada.png" },
+                { name: "Bheemunipatnam",  img: "/areas/bheemunipatnam.png" },
+                { name: "Pendurthi",       img: "/areas/pendurthi.png" },
+                { name: "Duvvada",         img: "/areas/duvvada.png" },
+                { name: "Sabbavaram",      img: "/areas/sabbavaram.png" },
+                { name: "Beach Oriented",  img: "/areas/beach_oriented.png" },
+                { name: "Tagarapuvalasa",  img: "/areas/tagarapuvalasa.png" },
+                { name: "Anakapalle",      img: "/areas/anakapalle.png" },
+                { name: "Vizag City",      img: "/areas/vizag_city.png" },
+              ].map((area) => (
+                <Link
+                  key={area.name}
+                  to="/contact"
+                  className="bg-white border border-[#E5E7EB] rounded-sm overflow-hidden hover:border-primary hover:shadow-md transition-all duration-200 group"
+                >
+                  {/* Image — smaller aspect ratio */}
+                  <div className="relative overflow-hidden bg-orange-50" style={{ aspectRatio: "4/3" }}>
+                    <img
+                      src={area.img}
+                      alt={area.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300" />
+                  </div>
+                  {/* Footer */}
+                  <div className="flex items-center gap-1.5 px-2.5 py-2">
+                    <MapPin size={12} className="text-primary shrink-0" />
+                    <span className="text-xs font-semibold text-[#1F2937] group-hover:text-primary transition-colors duration-200 truncate">
+                      {area.name}
+                    </span>
+                    <ArrowRight size={11} className="ml-auto text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
