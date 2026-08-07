@@ -394,7 +394,7 @@ export default function Home() {
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       style={area.filter ? {
-                        filter: "sepia(100%) saturate(500%) hue-rotate(330deg) brightness(0.88) contrast(1.1)"
+                        filter: "sepia(70%) saturate(200%) hue-rotate(330deg) brightness(1.2) contrast(0.9)"
                       } : undefined}
                     />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300" />
