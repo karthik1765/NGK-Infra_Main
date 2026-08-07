@@ -375,11 +375,11 @@ export default function Home() {
                 { name: "Bheemunipatnam",  img: "/areas/bheemunipatnam.png" },
                 { name: "Pendurthi",       img: "/areas/pendurthi.png" },
                 { name: "Duvvada",         img: "/areas/duvvada.png" },
-                { name: "Sabbavaram",      img: "/areas/sabbavaram.png" },
-                { name: "Beach Oriented",  img: "/areas/beach_oriented.png" },
+                { name: "Sabbavaram",      img: "/areas/sabbavaram.png",      filter: true },
+                { name: "Beach Oriented",  img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=450&fit=crop&auto=format", filter: true },
                 { name: "Tagarapuvalasa",  img: "/areas/tagarapuvalasa.png" },
                 { name: "Anakapalle",      img: "/areas/anakapalle.png" },
-                { name: "Vizag City",      img: "/areas/vizag_city.png" },
+                { name: "Vizag City",      img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&h=450&fit=crop&auto=format", filter: true },
               ].map((area) => (
                 <Link
                   key={area.name}
@@ -393,6 +393,9 @@ export default function Home() {
                       alt={area.name}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      style={area.filter ? {
+                        filter: "sepia(100%) saturate(500%) hue-rotate(330deg) brightness(0.88) contrast(1.1)"
+                      } : undefined}
                     />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300" />
                   </div>
