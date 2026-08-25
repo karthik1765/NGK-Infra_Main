@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { Phone, ArrowRight, Award, Home as HomeIcon, Calendar, ChevronRight, MapPin } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Phone, ArrowRight, Award, Home as HomeIcon, Calendar, ChevronRight, MapPin, X, ChevronLeft, ZoomIn } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 
 const HERO_SLIDES = [
   {
@@ -32,17 +32,29 @@ const STATS = [
   { value: "32", label: "Villa Units" },
 ];
 
+const VISHAL_GALLERY = [
+  { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Brochure Cover" },
+  { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Grand Entrance" },
+  { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Amenities & Clubhouse" },
+  { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Layout Plan" },
+  { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location Map" },
+  { src: "/projects/vishal-estates-phase2/page6.jpg", caption: "Project Overview" },
+  { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Additional Details" },
+];
+
 const PROJECTS = [
   {
     name: "NGK Project 1",
-    location: "VIZAG",
-    type: "Plots & Premium Apartments",
-    units: "575 Units",
-    area: "6.5 Acres",
-    config: "2 & 3 BHK",
-    tag: "Adjacent to Reserve Forest",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=560&fit=crop&auto=format",
+    location: "Pusapatirega, Vizianagaram",
+    type: "Open Plots – Vishal Estates Phase-II",
+    units: "Plots Available",
+    area: "Spacious Layout",
+    config: "Multiple Sizes",
+    tag: "Very close to Bhogapuram Airport",
+    image: "/projects/vishal-estates-phase2/page3.jpg",
     status: "Ongoing",
+    slug: "vishal-estates-phase-2",
+    gallery: VISHAL_GALLERY,
   },
   {
     name: "NGK Project 2",
@@ -102,9 +114,47 @@ const PROJECTS = [
 ];
 
 
+/* ── Inline Lightbox for home page gallery ── */
+function HomeLightbox({ images, startIndex, onClose }: { images: { src: string; caption: string }[]; startIndex: number; onClose: () => void }) {
+  const [current, setCurrent] = useState(startIndex);
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + images.length) % images.length), [images.length]);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length]);
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); if (e.key === "ArrowLeft") prev(); if (e.key === "ArrowRight") next(); };
+    document.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", handler); document.body.style.overflow = ""; };
+  }, [onClose, prev, next]);
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col bg-black/95 backdrop-blur-sm" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+        <span className="text-white/60 text-sm font-medium">{current + 1} / {images.length}</span>
+        <p className="text-white/80 text-sm text-center flex-1 mx-4 truncate">{images[current].caption}</p>
+        <button onClick={onClose} className="text-white/60 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"><X size={22} /></button>
+      </div>
+      <div className="flex-1 flex items-center justify-center relative overflow-hidden px-16">
+        <button onClick={prev} className="absolute left-4 z-10 text-white/60 hover:text-white bg-white/5 hover:bg-white/15 border border-white/10 rounded-full p-3 transition-all duration-200"><ChevronLeft size={24} /></button>
+        <img key={current} src={images[current].src} alt={images[current].caption} className="max-h-full max-w-full object-contain rounded-md shadow-2xl" style={{ animation: "fadeIn 0.25s ease" }} />
+        <button onClick={next} className="absolute right-4 z-10 text-white/60 hover:text-white bg-white/5 hover:bg-white/15 border border-white/10 rounded-full p-3 transition-all duration-200"><ChevronRight size={24} /></button>
+      </div>
+      <div className="shrink-0 border-t border-white/10 py-3 px-6 overflow-x-auto">
+        <div className="flex gap-2 justify-center min-w-max mx-auto">
+          {images.map((img, i) => (
+            <button key={i} onClick={() => setCurrent(i)} className={`w-16 h-12 rounded overflow-hidden border-2 transition-all duration-200 shrink-0 ${i === current ? "border-primary scale-105" : "border-white/20 opacity-50 hover:opacity-80"}`}>
+              <img src={img.src} alt={img.caption} className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+      <style>{`@keyframes fadeIn { from { opacity:0; transform:scale(0.97);} to { opacity:1; transform:scale(1);}}`}</style>
+    </div>
+  );
+}
+
 export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Auto-advance hero slideshow every 6 seconds
   useEffect(() => {
@@ -116,6 +166,15 @@ export default function Home() {
 
   return (
     <>
+      {/* LIGHTBOX */}
+      {lightboxIndex !== null && PROJECTS[activeProject].gallery && (
+        <HomeLightbox
+          images={PROJECTS[activeProject].gallery!}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+
       {/* HERO */}
       <section className="bg-white pt-24 pb-0 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -266,28 +325,59 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-5 border border-[#E5E7EB]">
             <div className="lg:col-span-3 relative aspect-[4/3] lg:aspect-auto overflow-hidden group bg-[#F3F4F6] min-h-[360px]">
+              {/* Main preview image — click to open lightbox if gallery exists */}
               <img
                 src={PROJECTS[activeProject].image}
                 alt={PROJECTS[activeProject].name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
+                  PROJECTS[activeProject].gallery ? "cursor-zoom-in" : ""
+                }`}
+                onClick={() => PROJECTS[activeProject].gallery && setLightboxIndex(2)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none" />
+
+              {/* "View All Photos" button — only for projects with a gallery */}
+              {PROJECTS[activeProject].gallery && (
+                <button
+                  onClick={() => setLightboxIndex(0)}
+                  className="absolute top-4 right-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-full border border-white/20 hover:bg-black/70 transition-all z-10"
+                >
+                  <ZoomIn size={12} /> View All {PROJECTS[activeProject].gallery.length} Photos
+                </button>
+              )}
+
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
                 <span className="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 mb-3 rounded-sm">
                   {PROJECTS[activeProject].status}
                 </span>
                 <h3 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   {PROJECTS[activeProject].name}
                 </h3>
-                <p className="text-white/70 text-sm flex items-center gap-1.5">
+                <p className="text-white/70 text-sm flex items-center gap-1.5 mb-3">
                   <MapPin size={12} /> {PROJECTS[activeProject].location}
                 </p>
+
+                {/* Thumbnail strip — visible only when gallery project is active */}
+                {PROJECTS[activeProject].gallery && (
+                  <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                    {PROJECTS[activeProject].gallery.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
+                        className="w-12 h-9 rounded shrink-0 overflow-hidden border-2 border-white/30 hover:border-primary transition-all duration-200 focus:outline-none"
+                        title={img.caption}
+                      >
+                        <img src={img.src} alt={img.caption} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="lg:col-span-2 divide-y divide-[#E5E7EB]">
               {PROJECTS.map((p, i) => (
-                <button key={i} onClick={() => setActiveProject(i)}
+                <button key={i} onClick={() => { setActiveProject(i); setLightboxIndex(null); }}
                   className={`w-full text-left p-5 flex items-start gap-4 transition-colors duration-200 ${activeProject === i ? "bg-orange-50" : "bg-white hover:bg-[#F9FAFB]"}`}
                 >
                   <div className={`w-0.5 self-stretch mt-1 shrink-0 transition-colors ${activeProject === i ? "bg-primary" : "bg-[#E5E7EB]"}`} />

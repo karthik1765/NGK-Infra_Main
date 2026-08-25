@@ -14,8 +14,9 @@ const PROJECTS = [
     config: "2 & 3 BHK",
     highlights: ["Adjacent to 5,000-hectare reserve forest", "Cellar & stilt parking", "Premium clubhouse", "24/7 security"],
     tag: "Adjacent to Reserve Forest",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=560&fit=crop&auto=format",
+    image: "/projects/vishal-estates-phase2/page3.jpg",
     status: "Ongoing",
+    slug: "vishal-estates-phase-2",
     desc: "A landmark residential community set against the backdrop of a vast reserve forest. Vantara offers 575 thoughtfully designed 2 & 3 BHK apartments across 6.5 acres of prime land.",
   },
   {
@@ -168,21 +169,42 @@ export default function Projects() {
             {filtered.map((p, i) => (
               <article key={i} className="bg-white border border-[#E5E7EB] group overflow-hidden hover:border-primary/40 hover:shadow-md transition-all duration-300">
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#F3F4F6]">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent" />
+                  {p.slug ? (
+                    <Link to={`/projects/${p.slug}`}>
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </Link>
+                  ) : (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent pointer-events-none" />
                   <span className={`absolute top-4 left-4 text-xs font-medium px-3 py-1 border ${STATUS_COLORS[p.status]}`}>
                     {p.status}
                   </span>
+                  {p.slug && (
+                    <Link
+                      to={`/projects/${p.slug}`}
+                      className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] px-2.5 py-1 rounded-full border border-white/20 hover:bg-black/70 transition-all"
+                    >
+                      View Details →
+                    </Link>
+                  )}
                 </div>
 
                 <div className="p-6">
                   <div className="h-0.5 w-8 bg-primary mb-4" />
-                  <h3 className="text-xl font-semibold text-[#1F2937] mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>{p.name}</h3>
+                  <h3 className="text-xl font-semibold text-[#1F2937] mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    {p.slug ? <Link to={`/projects/${p.slug}`} className="hover:text-primary transition-colors">{p.name}</Link> : p.name}
+                  </h3>
                   <p className="text-xs text-[#6B7280] flex items-center gap-1 mb-4">
                     <MapPin size={11} /> {p.location} · {p.type}
                   </p>
@@ -210,13 +232,23 @@ export default function Projects() {
                     ))}
                   </ul>
 
-                  <a
-                    href="tel:+919398691219"
-                    className="flex items-center gap-2 border border-[#E5E7EB] text-sm text-[#6B7280] px-4 py-2.5 hover:border-primary hover:text-primary transition-all duration-200 group/btn justify-center rounded-sm"
-                  >
-                    <Phone size={13} /> Enquire Now
-                    <ArrowRight size={13} className="ml-auto group-hover/btn:translate-x-0.5 transition-transform" />
-                  </a>
+                  {p.slug ? (
+                    <Link
+                      to={`/projects/${p.slug}`}
+                      className="flex items-center gap-2 bg-primary text-primary-foreground text-sm px-4 py-2.5 hover:bg-[#EA580C] transition-all duration-200 group/btn justify-center rounded-sm font-medium"
+                    >
+                      View All Photos & Details
+                      <ArrowRight size={13} className="ml-auto group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
+                  ) : (
+                    <a
+                      href="tel:+919398691219"
+                      className="flex items-center gap-2 border border-[#E5E7EB] text-sm text-[#6B7280] px-4 py-2.5 hover:border-primary hover:text-primary transition-all duration-200 group/btn justify-center rounded-sm"
+                    >
+                      <Phone size={13} /> Enquire Now
+                      <ArrowRight size={13} className="ml-auto group-hover/btn:translate-x-0.5 transition-transform" />
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
