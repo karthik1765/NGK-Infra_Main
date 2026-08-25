@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { MapPin, ArrowLeft, X, ChevronLeft, ChevronRight, Phone, ZoomIn, ArrowRight } from "lucide-react";
 
@@ -24,15 +24,15 @@ const PROJECT_DATA = {
       "20 min drive to Bheemili Beach",
       "Surrounded by Engineering colleges & International Schools",
     ],
-    coverImage: "/projects/vishal-estates-phase2/page3.jpg",
+    coverImage: "/projects/vishal-estates-phase2/page1.jpg",
     gallery: [
-      { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Vishal Estates Phase-II – Brochure Cover" },
-      { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Symbol of Trust – Grand Entrance" },
-      { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Hassle Free – Amenities & Clubhouse" },
-      { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Family Come First – Layout Plan" },
+      { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Symbol of Trust – Grand Entrance Gate" },
+      { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Hassle Free – Clubhouse, Pool & Green Amenities" },
+      { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Family Come First – Typical Layout Plan" },
+      { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Together We Grow – Site Developments & Amenities" },
       { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location Map & Highlights" },
-      { src: "/projects/vishal-estates-phase2/page6.jpg", caption: "Project Overview" },
-      { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Additional Details" },
+      { src: "/projects/vishal-estates-phase2/page6.jpg", caption: "Project Brochure – Overview" },
+      { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Investment & Growth Highlights" },
     ],
   },
 };
@@ -164,13 +164,13 @@ export default function ProjectDetail() {
                 <h2 className="text-2xl font-semibold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>Project Gallery</h2>
                 <span className="text-xs text-[#6B7280] bg-[#F3F4F6] px-3 py-1 rounded-full border border-[#E5E7EB]">{project.gallery.length} photos</span>
               </div>
-              <div className="relative aspect-[16/9] overflow-hidden rounded-sm cursor-zoom-in group mb-3" onClick={() => setLightboxIndex(2)}>
-                <img src={project.gallery[2].src} alt={project.gallery[2].caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div className="relative aspect-[16/9] overflow-hidden rounded-sm cursor-zoom-in group mb-3" onClick={() => setLightboxIndex(0)}>
+                <img src={project.gallery[0].src} alt={project.gallery[0].caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-3"><ZoomIn size={22} className="text-white" /></div>
                 </div>
-                <div className="absolute bottom-3 left-3 text-white/80 text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded">{project.gallery[2].caption}</div>
+                <div className="absolute bottom-3 left-3 text-white/80 text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded">{project.gallery[0].caption}</div>
               </div>
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                 {project.gallery.map((img, i) => (
