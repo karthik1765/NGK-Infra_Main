@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+﻿import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { MapPin, ArrowLeft, X, ChevronLeft, ChevronRight, Phone, ZoomIn, ArrowRight } from "lucide-react";
 
 const PROJECT_DATA = {
   "vishal-estates-phase-2": {
-    name: "Sai Infra's Vishal Estates Phase-II",
+    name: "NGK Project 1",
     subtitle: "To Live In Peace Is To Have Nature Up-close!",
     location: "Pusapatirega, Vizianagaram District",
     type: "Open Plots",
@@ -13,7 +13,7 @@ const PROJECT_DATA = {
     config: "Multiple Sizes",
     status: "Ongoing",
     tag: "Very close to Bhogapuram Airport",
-    desc: "Vishal Estates Phase-II is a selective venture raised amidst the greenery — a beautiful spot very far from pollution. Coming with perfect Vastu, all necessary legalities have been taken care of so that our customers can have a hassle-free investment.",
+    desc: "NGK Project 1 is a selective venture raised amidst the greenery — a beautiful spot very far from pollution. Coming with perfect Vastu, all necessary legalities have been taken care of so that our customers can have a hassle-free investment.",
     highlights: [
       "Very close to Bhogapuram International Airport",
       "Three districts Hub",
@@ -24,19 +24,117 @@ const PROJECT_DATA = {
       "20 min drive to Bheemili Beach",
       "Surrounded by Engineering colleges & International Schools",
     ],
-    coverImage: "/projects/vishal-estates-phase2/page1.jpg",
+    coverImage: "/projects/ngk-project-1/slide1.jpg",
     gallery: [
-      { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Symbol of Trust – Grand Entrance Gate" },
-      { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Hassle Free – Clubhouse, Pool & Green Amenities" },
-      { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Family Come First – Typical Layout Plan" },
-      { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Together We Grow – Site Developments & Amenities" },
-      { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location Map & Highlights" },
-      { src: "/projects/vishal-estates-phase2/page6.jpg", caption: "Project Brochure – Overview" },
-      { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Investment & Growth Highlights" },
+      { src: "/projects/ngk-project-1/slide1.jpg", caption: "Symbol of Trust – Grand Entrance Gate" },
+      { src: "/projects/ngk-project-1/slide2.jpg", caption: "Hassle Free – Clubhouse, Pool & Green Amenities" },
+      { src: "/projects/ngk-project-1/slide3.jpg", caption: "Family Come First – Typical Layout Plan" },
+      { src: "/projects/ngk-project-1/slide4.jpg", caption: "Together We Grow – Site Developments & Amenities" },
     ],
   },
 };
 
+/* ────────── Auto-scroll Carousel ────────── */
+function AutoCarousel({ images, onImageClick }) {
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const intervalRef = useRef(null);
+
+  const goTo = useCallback((idx) => setCurrent((idx + images.length) % images.length), [images.length]);
+  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
+  const next = useCallback(() => goTo(current + 1), [current, goTo]);
+
+  useEffect(() => {
+    if (isHovered) return;
+    intervalRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % images.length);
+    }, 4000);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [isHovered, images.length]);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden rounded-sm bg-black"
+      style={{ aspectRatio: "16/9" }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {images.map((img, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0, pointerEvents: i === current ? "auto" : "none" }}
+        >
+          <img
+            src={img.src}
+            alt={img.caption}
+            className="w-full h-full object-cover cursor-zoom-in"
+            onClick={() => onImageClick(i)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+        </div>
+      ))}
+
+      <div className="absolute bottom-0 left-0 right-0 px-5 py-4 pointer-events-none">
+        <p className="text-white text-sm font-medium drop-shadow-lg">{images[current].caption}</p>
+      </div>
+
+      <button
+        onClick={prev}
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2.5 transition-all duration-200 border border-white/20 hover:border-white/50"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2.5 transition-all duration-200 border border-white/20 hover:border-white/50"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      <button
+        onClick={() => onImageClick(current)}
+        className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white/80 text-xs px-3 py-1.5 rounded-full border border-white/20 hover:bg-black/70 hover:text-white transition-all"
+      >
+        <ZoomIn size={12} /> View Full
+      </button>
+
+      <div className="absolute bottom-12 right-4 flex gap-1.5">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className="transition-all duration-300 rounded-full border border-white/40"
+            style={{
+              width: i === current ? "22px" : "8px",
+              height: "8px",
+              background: i === current ? "#F97316" : "rgba(255,255,255,0.45)",
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/10">
+        {!isHovered && (
+          <div
+            key={current}
+            className="h-full bg-primary"
+            style={{ animation: "slideProgress 4s linear forwards" }}
+          />
+        )}
+      </div>
+
+      <style>{`
+        @keyframes slideProgress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ────────── Lightbox ────────── */
 function Lightbox({ images, startIndex, onClose }) {
   const [current, setCurrent] = useState(startIndex);
 
@@ -91,6 +189,7 @@ function Lightbox({ images, startIndex, onClose }) {
   );
 }
 
+/* ────────── Main Page ────────── */
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = slug ? PROJECT_DATA[slug] : null;
@@ -122,10 +221,10 @@ export default function ProjectDetail() {
       </div>
 
       <section className="relative h-[55vh] min-h-[380px] max-h-[600px] overflow-hidden bg-[#111]">
-        <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-80 hover:scale-[1.02] transition-transform duration-700 cursor-zoom-in" onClick={() => { const idx = project.gallery.findIndex((g) => g.src === project.coverImage); setLightboxIndex(idx >= 0 ? idx : 0); }} />
+        <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-80 hover:scale-[1.02] transition-transform duration-700 cursor-zoom-in" onClick={() => setLightboxIndex(0)} />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/30 to-transparent" />
         <span className={`absolute top-6 left-6 text-xs font-medium px-3 py-1 border ${STATUS_COLORS[project.status]}`}>{project.status}</span>
-        <button onClick={() => { const idx = project.gallery.findIndex((g) => g.src === project.coverImage); setLightboxIndex(idx >= 0 ? idx : 0); }} className="absolute top-6 right-6 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white/80 text-xs px-3 py-2 rounded-full border border-white/20 hover:bg-black/70 hover:text-white transition-all">
+        <button onClick={() => setLightboxIndex(0)} className="absolute top-6 right-6 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white/80 text-xs px-3 py-2 rounded-full border border-white/20 hover:bg-black/70 hover:text-white transition-all">
           <ZoomIn size={13} /> View All Photos
         </button>
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 max-w-7xl mx-auto">
@@ -162,19 +261,19 @@ export default function ProjectDetail() {
               <div className="h-0.5 w-8 bg-primary mb-5" />
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>Project Gallery</h2>
-                <span className="text-xs text-[#6B7280] bg-[#F3F4F6] px-3 py-1 rounded-full border border-[#E5E7EB]">{project.gallery.length} photos</span>
+                <span className="text-xs text-[#6B7280] bg-[#F3F4F6] px-3 py-1 rounded-full border border-[#E5E7EB]">{project.gallery.length} photos · auto-scroll</span>
               </div>
-              <div className="relative aspect-[16/9] overflow-hidden rounded-sm cursor-zoom-in group mb-3" onClick={() => setLightboxIndex(0)}>
-                <img src={project.gallery[0].src} alt={project.gallery[0].caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-3"><ZoomIn size={22} className="text-white" /></div>
-                </div>
-                <div className="absolute bottom-3 left-3 text-white/80 text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded">{project.gallery[0].caption}</div>
-              </div>
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+
+              <AutoCarousel images={project.gallery} onImageClick={(i) => setLightboxIndex(i)} />
+
+              <div className="grid grid-cols-4 gap-2 mt-3">
                 {project.gallery.map((img, i) => (
-                  <button key={i} onClick={() => setLightboxIndex(i)} className="relative aspect-square overflow-hidden rounded-sm group border border-[#E5E7EB] hover:border-primary/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/40" title={img.caption}>
+                  <button
+                    key={i}
+                    onClick={() => setLightboxIndex(i)}
+                    className="relative aspect-[16/10] overflow-hidden rounded-sm group border border-[#E5E7EB] hover:border-primary/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    title={img.caption}
+                  >
                     <img src={img.src} alt={img.caption} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
                       <ZoomIn size={14} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -183,7 +282,7 @@ export default function ProjectDetail() {
                   </button>
                 ))}
               </div>
-              <p className="text-center text-xs text-[#9CA3AF] mt-3">Click any photo to open full-screen gallery · Use arrow keys to navigate</p>
+              <p className="text-center text-xs text-[#9CA3AF] mt-3">Auto-scrolls every 4 seconds · Click any photo for full-screen gallery · Use arrow keys to navigate</p>
             </div>
           </div>
 

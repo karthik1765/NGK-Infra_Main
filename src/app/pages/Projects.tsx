@@ -14,7 +14,7 @@ const PROJECTS = [
     config: "2 & 3 BHK",
     highlights: ["Adjacent to 5,000-hectare reserve forest", "Cellar & stilt parking", "Premium clubhouse", "24/7 security"],
     tag: "Adjacent to Reserve Forest",
-    image: "/projects/vishal-estates-phase2/page1.jpg",
+    image: "/projects/ngk-project-1/slide1.jpg",
     status: "Ongoing",
     slug: "vishal-estates-phase-2",
     desc: "A landmark residential community set against the backdrop of a vast reserve forest. Vantara offers 575 thoughtfully designed 2 & 3 BHK apartments across 6.5 acres of prime land.",
