@@ -33,8 +33,6 @@ const STATS = [
 ];
 
 const VISHAL_GALLERY = [
-  { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Brochure Cover Page" },
-  { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Salient Features & Vastu" },
   { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Amenities & Clubhouse" },
   { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Layout Plan" },
   { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location Map" },

@@ -26,8 +26,6 @@ const PROJECT_DATA = {
     ],
     coverImage: "/projects/vishal-estates-phase2/page3.jpg",
     gallery: [
-      { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Brochure Cover Page – Vishal Estates Phase-II" },
-      { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Salient Features & Location Advantages" },
       { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Family Come First – Amenities & Clubhouse" },
       { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Together We Grow – Master Layout Plan" },
       { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location & Route Map" },
