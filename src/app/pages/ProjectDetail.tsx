@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { MapPin, ArrowLeft, X, ChevronLeft, ChevronRight, Phone, ZoomIn, ArrowRight } from "lucide-react";
 
@@ -24,10 +24,8 @@ const PROJECT_DATA = {
       "20 min drive to Bheemili Beach",
       "Surrounded by Engineering colleges & International Schools",
     ],
-    coverImage: "/projects/ngk-project-1/slide1.jpg",
+    coverImage: "/projects/ngk-project-1/slide3.jpg",
     gallery: [
-      { src: "/projects/ngk-project-1/slide1.jpg", caption: "Symbol of Trust – Grand Entrance Gate" },
-      { src: "/projects/ngk-project-1/slide2.jpg", caption: "Hassle Free – Clubhouse, Pool & Green Amenities" },
       { src: "/projects/ngk-project-1/slide3.jpg", caption: "Family Come First – Typical Layout Plan" },
       { src: "/projects/ngk-project-1/slide4.jpg", caption: "Together We Grow – Site Developments & Amenities" },
     ],
