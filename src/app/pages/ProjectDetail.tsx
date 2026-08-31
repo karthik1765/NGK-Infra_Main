@@ -24,10 +24,15 @@ const PROJECT_DATA = {
       "20 min drive to Bheemili Beach",
       "Surrounded by Engineering colleges & International Schools",
     ],
-    coverImage: "/projects/ngk-project-1/slide3.jpg",
+    coverImage: "/projects/vishal-estates-phase2/page3.jpg",
     gallery: [
-      { src: "/projects/ngk-project-1/slide3.jpg", caption: "Family Come First – Typical Layout Plan" },
-      { src: "/projects/ngk-project-1/slide4.jpg", caption: "Together We Grow – Site Developments & Amenities" },
+      { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Brochure Cover Page – Vishal Estates Phase-II" },
+      { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Salient Features & Location Advantages" },
+      { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Family Come First – Amenities & Clubhouse" },
+      { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Together We Grow – Master Layout Plan" },
+      { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location & Route Map" },
+      { src: "/projects/vishal-estates-phase2/page6.jpg", caption: "Project Overview & Highlights" },
+      { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Additional Details & Contact Info" },
     ],
   },
 };
@@ -36,7 +41,7 @@ const PROJECT_DATA = {
 function AutoCarousel({ images, onImageClick }) {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback((idx) => setCurrent((idx + images.length) % images.length), [images.length]);
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
