@@ -33,8 +33,7 @@ const STATS = [
 ];
 
 const VISHAL_GALLERY = [
-  { src: "/projects/vishal-estates-phase2/page1.jpg", caption: "Brochure Cover" },
-  { src: "/projects/vishal-estates-phase2/page2.jpg", caption: "Grand Entrance" },
+
   { src: "/projects/vishal-estates-phase2/page3.jpg", caption: "Amenities & Clubhouse" },
   { src: "/projects/vishal-estates-phase2/page4.jpg", caption: "Layout Plan" },
   { src: "/projects/vishal-estates-phase2/page5.jpg", caption: "Location Map" },
@@ -155,6 +154,18 @@ export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [gallerySlide, setGallerySlide] = useState(0);
+
+  // Auto-advance project gallery every 5 seconds
+  useEffect(() => {
+    setGallerySlide(0);
+    const gallery = PROJECTS[activeProject].gallery;
+    if (!gallery) return;
+    const timer = setInterval(() => {
+      setGallerySlide((prev) => (prev + 1) % gallery.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [activeProject]);
 
   // Auto-advance hero slideshow every 6 seconds
   useEffect(() => {
@@ -325,15 +336,26 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-5 border border-[#E5E7EB]">
             <div className="lg:col-span-3 relative aspect-[4/3] lg:aspect-auto overflow-hidden group bg-[#F3F4F6] min-h-[360px]">
-              {/* Main preview image — click to open lightbox if gallery exists */}
-              <img
-                src={PROJECTS[activeProject].image}
-                alt={PROJECTS[activeProject].name}
-                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
-                  PROJECTS[activeProject].gallery ? "cursor-zoom-in" : ""
-                }`}
-                onClick={() => PROJECTS[activeProject].gallery && setLightboxIndex(2)}
-              />
+              {/* Main preview image — auto-scrolling gallery or static image */}
+              {PROJECTS[activeProject].gallery ? (
+                PROJECTS[activeProject].gallery.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img.src}
+                    alt={img.caption}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 cursor-zoom-in ${
+                      idx === gallerySlide ? "opacity-100" : "opacity-0"
+                    }`}
+                    onClick={() => setLightboxIndex(idx)}
+                  />
+                ))
+              ) : (
+                <img
+                  src={PROJECTS[activeProject].image}
+                  alt={PROJECTS[activeProject].name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none" />
 
               {/* "View All Photos" button — only for projects with a gallery */}
@@ -364,7 +386,7 @@ export default function Home() {
                       <button
                         key={idx}
                         onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
-                        className="w-12 h-9 rounded shrink-0 overflow-hidden border-2 border-white/30 hover:border-primary transition-all duration-200 focus:outline-none"
+                        className={`w-12 h-9 rounded shrink-0 overflow-hidden border-2 ${idx === gallerySlide ? "border-primary" : "border-white/30"} hover:border-primary transition-all duration-200 focus:outline-none`}
                         title={img.caption}
                       >
                         <img src={img.src} alt={img.caption} className="w-full h-full object-cover" />

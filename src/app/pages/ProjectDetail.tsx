@@ -46,7 +46,7 @@ function AutoCarousel({ images, onImageClick }) {
     if (isHovered) return;
     intervalRef.current = setInterval(() => {
       setCurrent((c) => (c + 1) % images.length);
-    }, 4000);
+    }, 5000);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [isHovered, images.length]);
 
