@@ -250,7 +250,7 @@ export default function Contact() {
           <div className="relative h-64 md:h-80 overflow-hidden rounded-sm border border-[#E5E7EB] shadow-md">
             <iframe
               title="NGK Infra Office Location"
-              src="https://www.google.com/maps?q=17.696528,83.192722&z=16&output=embed"
+              src="https://www.google.com/maps?q=17.6835656,83.1987270&z=16&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
