@@ -159,8 +159,8 @@ export default function Projects() {
               key={f}
               onClick={() => setFilter(f)}
               className={`px-5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-sm ${filter === f
-                  ? "bg-primary text-primary-foreground"
-                  : "text-[#6B7280] hover:text-primary border border-transparent hover:border-[#E5E7EB]"
+                ? "bg-primary text-primary-foreground"
+                : "text-[#6B7280] hover:text-primary border border-transparent hover:border-[#E5E7EB]"
                 }`}
             >
               {f}

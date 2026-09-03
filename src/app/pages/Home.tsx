@@ -247,8 +247,8 @@ export default function Home() {
                     onClick={() => setHeroSlide(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === heroSlide
-                        ? "bg-primary w-6"
-                        : "bg-white/60 hover:bg-white"
+                      ? "bg-primary w-6"
+                      : "bg-white/60 hover:bg-white"
                       }`}
                   />
                 ))}
@@ -342,9 +342,8 @@ export default function Home() {
                     key={idx}
                     src={img.src}
                     alt={img.caption}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 cursor-zoom-in ${
-                      idx === gallerySlide ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 cursor-zoom-in ${idx === gallerySlide ? "opacity-100" : "opacity-0"
+                      }`}
                     onClick={() => setLightboxIndex(idx)}
                   />
                 ))
@@ -475,53 +474,34 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 4 per row × 3 rows = 12 cities, centered */}
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-4xl">
-              {[
-                { name: "Gajuwaka",        img: "/areas/gajuwaka.png" },
-                { name: "Kommadi",         img: "/areas/kommadi.png" },
-                { name: "Rushikonda",      img: "/areas/rushikonda.png" },
-                { name: "Madhurawada",     img: "/areas/madhurawada.png" },
-                { name: "Bheemunipatnam",  img: "/areas/bheemunipatnam.png" },
-                { name: "Pendurthi",       img: "/areas/pendurthi.png" },
-                { name: "Duvvada",         img: "/areas/duvvada.png" },
-                { name: "Sabbavaram",      img: "/areas/sabbavaram.png",      filter: true },
-                { name: "Beach Oriented",  img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=450&fit=crop&auto=format", filter: true },
-                { name: "Tagarapuvalasa",  img: "/areas/tagarapuvalasa.png" },
-                { name: "Anakapalle",      img: "/areas/anakapalle.png" },
-                { name: "Vizag City",      img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&h=450&fit=crop&auto=format", filter: true },
-              ].map((area) => (
-                <Link
-                  key={area.name}
-                  to="/contact"
-                  className="bg-white border border-[#E5E7EB] rounded-sm overflow-hidden hover:border-primary hover:shadow-md transition-all duration-200 group"
-                >
-                  {/* Image — smaller aspect ratio */}
-                  <div className="relative overflow-hidden bg-orange-50" style={{ aspectRatio: "4/3" }}>
-                    <img
-                      src={area.img}
-                      alt={area.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      style={area.filter ? {
-                        filter: "sepia(70%) saturate(200%) hue-rotate(330deg) brightness(1.2) contrast(0.9)"
-                      } : undefined}
-                    />
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300" />
-                  </div>
-                  {/* Footer */}
-                  <div className="flex items-center gap-1.5 px-2.5 py-2">
-                    <MapPin size={12} className="text-primary shrink-0" />
-                    <span className="text-xs font-semibold text-[#1F2937] group-hover:text-primary transition-colors duration-200 truncate">
-                      {area.name}
-                    </span>
-                    <ArrowRight size={11} className="ml-auto text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
-                  </div>
-                </Link>
-              ))}
-            </div>
+          {/* Location chips — no images, names only */}
+          <div className="flex flex-wrap gap-3">
+            {[
+              "Gajuwaka",
+              "Kommadi",
+              "Rushikonda",
+              "Madhurawada",
+              "Bheemunipatnam",
+              "Pendurthi",
+              "Duvvada",
+              "Sabbavaram",
+              "Beach Oriented",
+              "Tagarapuvalasa",
+              "Anakapalle",
+              "Vizag City",
+            ].map((name) => (
+              <Link
+                key={name}
+                to="/areas"
+                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E5E7EB] rounded-full text-sm font-semibold text-[#1F2937] hover:border-primary hover:text-primary hover:shadow-md transition-all duration-200 group"
+              >
+                <MapPin size={13} className="text-primary shrink-0" />
+                {name}
+                <ArrowRight size={12} className="ml-0.5 text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+              </Link>
+            ))}
           </div>
+
         </div>
       </section>
 

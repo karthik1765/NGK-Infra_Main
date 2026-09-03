@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
+import Areas from "./pages/Areas";
 import Gallery from "./pages/Gallery";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "about", element: <Navigate to="/about-us" replace /> },
       { path: "projects", Component: Projects },
       { path: "projects/:slug", Component: ProjectDetail },
+      { path: "areas", Component: Areas },
       { path: "gallery", Component: Gallery },
       { path: "news", Component: News },
       { path: "contact", Component: Contact },
