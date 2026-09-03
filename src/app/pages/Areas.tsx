@@ -28,8 +28,8 @@ const AREAS = [
       "One of Vizag's fastest-growing industrial and residential corridors, Gajuwaka offers excellent connectivity and a strong social infrastructure.",
     tags: ["Industrial Zone", "Port Connectivity", "Prime Location"],
     icon: "Building2",
-    // Steel plant / industrial port skyline
-    image: "https://images.unsplash.com/photo-1565793979577-d5e67ac98a54?w=800&h=560&fit=crop&auto=format",
+    // Gajuwaka — urban residential apartments corridor Vizag
+    image: "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=800&h=560&fit=crop&auto=format",
     projects: 2,
     distance: "12 km from City Centre",
   },
@@ -42,8 +42,8 @@ const AREAS = [
       "A rapidly developing township near NH-16 with excellent land appreciation and proximity to Bhogapuram Airport and key educational institutions.",
     tags: ["NH-16 Adjacent", "Township Development", "Growing Zone"],
     icon: "Trees",
-    // Green highway / NH-16 corridor
-    image: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&h=560&fit=crop&auto=format",
+    // Tagarapuvalasa — green suburb township
+    image: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&h=560&fit=crop&auto=format",
     projects: 1,
     distance: "Near Bhogapuram",
   },
@@ -264,99 +264,38 @@ export default function Areas() {
         </div>
       </section>
 
-      {/* AREAS GRID */}
-      <section className="py-16 px-6 bg-[#F9FAFB]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* AREAS GRID — compact 4-per-row, image + name + region only */}
+      <section className="py-14 px-6 bg-[#F9FAFB]">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {filtered.map((area, i) => (
-              <article
+              <Link
                 key={i}
-                className="bg-white border border-[#E5E7EB] group overflow-hidden hover:border-primary/40 hover:shadow-md transition-all duration-300"
+                to="/areas"
+                className="group rounded-lg overflow-hidden border border-[#E5E7EB] bg-white hover:border-primary hover:shadow-lg transition-all duration-300"
               >
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#F3F4F6]">
+                <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <img
                     src={area.image}
                     alt={area.name}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent pointer-events-none" />
-
-                  {/* Type badge */}
-                  <span
-                    className={`absolute top-4 left-4 text-xs font-medium px-3 py-1 border rounded-sm ${TYPE_COLORS[area.type]} bg-white/90 backdrop-blur-sm`}
-                  >
-                    {area.type}
-                  </span>
-
-                  {/* Projects count */}
-                  <span className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] px-2.5 py-1 rounded-full border border-white/20">
-                    {area.projects} Project{area.projects > 1 ? "s" : ""}
-                  </span>
-
-                  {/* Area name overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3
-                      className="text-xl font-bold text-white"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  {/* Name overlay on image */}
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
+                    <h3 className="text-white text-sm font-bold leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                       {area.name}
                     </h3>
-                    <p className="text-white/70 text-xs flex items-center gap-1 mt-0.5">
-                      <MapPin size={10} />
-                      {area.region}
-                    </p>
                   </div>
                 </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="h-0.5 w-8 bg-primary mb-4" />
-
-                  {/* Highlight */}
-                  <p className="text-xs text-primary font-semibold tracking-wider uppercase mb-2">
-                    {area.highlight}
-                  </p>
-
-                  <p className="text-sm text-[#6B7280] leading-relaxed mb-4 line-clamp-2">
-                    {area.description}
-                  </p>
-
-                  {/* Info row — Distance only */}
-                  <div className="flex items-center gap-2 mb-4 pt-4 border-t border-[#E5E7EB]">
-                    <MapPin size={12} className="text-primary shrink-0" />
-                    <div>
-                      <div className="text-[10px] tracking-[0.15em] text-[#6B7280] uppercase">Distance</div>
-                      <div className="text-xs text-[#1F2937] font-medium mt-0.5">{area.distance}</div>
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {area.tags.map((tag, j) => (
-                      <span
-                        key={j}
-                        className="text-[10px] px-2 py-0.5 bg-[#F3F4F6] text-[#6B7280] rounded-sm border border-[#E5E7EB]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <Link
-                    to="/projects"
-                    className="flex items-center gap-2 border border-[#E5E7EB] text-sm text-[#6B7280] px-4 py-2.5 hover:border-primary hover:text-primary transition-all duration-200 group/btn justify-center rounded-sm"
-                  >
-                    View Projects in {area.name}
-                    <ArrowRight
-                      size={13}
-                      className="ml-auto group-hover/btn:translate-x-0.5 transition-transform"
-                    />
-                  </Link>
+                {/* Region below image */}
+                <div className="flex items-center gap-1.5 px-3 py-2">
+                  <MapPin size={11} className="text-primary shrink-0" />
+                  <span className="text-[11px] text-[#6B7280] font-medium truncate">{area.region}</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 
