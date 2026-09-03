@@ -269,9 +269,8 @@ export default function Areas() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {filtered.map((area, i) => (
-              <Link
+              <div
                 key={i}
-                to="/areas"
                 className="group rounded-lg overflow-hidden border border-[#E5E7EB] bg-white hover:border-primary hover:shadow-lg transition-all duration-300"
               >
                 {/* Image */}
@@ -295,7 +294,7 @@ export default function Areas() {
                   <MapPin size={11} className="text-primary shrink-0" />
                   <span className="text-[11px] text-[#6B7280] font-medium truncate">{area.region}</span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
