@@ -14,10 +14,9 @@ const AREAS = [
       "Strategically located near the upcoming Bhogapuram International Airport, this area is rapidly appreciating and ideal for long-term investment in open plots.",
     tags: ["Near International Airport", "NH-16 Connectivity", "High Growth Zone"],
     icon: "Building2",
-    image:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop&auto=format",
+    // Bhogapuram International Airport construction site / aerial view
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 5L – ₹ 20L",
     distance: "Near Bhogapuram Airport",
   },
   {
@@ -29,10 +28,9 @@ const AREAS = [
       "One of Vizag's fastest-growing industrial and residential corridors, Gajuwaka offers excellent connectivity and a strong social infrastructure.",
     tags: ["Industrial Zone", "Port Connectivity", "Prime Location"],
     icon: "Building2",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=560&fit=crop&auto=format",
+    // Steel plant / industrial port skyline
+    image: "https://images.unsplash.com/photo-1565793979577-d5e67ac98a54?w=800&h=560&fit=crop&auto=format",
     projects: 2,
-    priceRange: "₹ 40L – ₹ 90L",
     distance: "12 km from City Centre",
   },
   {
@@ -44,10 +42,9 @@ const AREAS = [
       "A rapidly developing township near NH-16 with excellent land appreciation and proximity to Bhogapuram Airport and key educational institutions.",
     tags: ["NH-16 Adjacent", "Township Development", "Growing Zone"],
     icon: "Trees",
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=560&fit=crop&auto=format",
+    // Green highway / NH-16 corridor
+    image: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 8L – ₹ 25L",
     distance: "Near Bhogapuram",
   },
   {
@@ -59,10 +56,9 @@ const AREAS = [
       "Known for its pristine beach and IT corridor, Rushikonda is Vizag's premium luxury zone with scenic ocean views and world-class infrastructure.",
     tags: ["Beach Proximity", "IT Corridor", "Luxury Living"],
     icon: "Waves",
-    image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=560&fit=crop&auto=format",
+    // Rushikonda beach — golden sandy beach, blue ocean waves
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 1.5Cr – ₹ 4Cr",
     distance: "15 km from City Centre",
   },
   {
@@ -74,10 +70,9 @@ const AREAS = [
       "Home to the GITAM University, IT SEZ, and a booming residential market. Madhurawada is Vizag's most sought-after address for professionals.",
     tags: ["IT SEZ Zone", "GITAM University", "High Demand"],
     icon: "Building2",
-    image:
-      "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=560&fit=crop&auto=format",
+    // Modern tech park / university campus aerial
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 50L – ₹ 1.2Cr",
     distance: "18 km from City Centre",
   },
   {
@@ -89,10 +84,9 @@ const AREAS = [
       "A peaceful residential belt with lush surroundings, excellent schools, and a growing social ecosystem. Perfect for families seeking quality living.",
     tags: ["Schools & Colleges", "Peaceful Environment", "Family-Friendly"],
     icon: "Home",
-    image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=560&fit=crop&auto=format",
+    // Lush green residential neighbourhood
+    image: "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 45L – ₹ 85L",
     distance: "20 km from City Centre",
   },
   {
@@ -104,10 +98,9 @@ const AREAS = [
       "A scenic coastal town with historic fort, pristine beaches, and premium villa plots. Bheemili is the ultimate coastal retreat for weekend homes and investments.",
     tags: ["Coastal Location", "Historic Town", "Premium Villas"],
     icon: "Waves",
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=560&fit=crop&auto=format",
+    // Bheemili coastline — serene beach with greenery
+    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 80L – ₹ 2Cr",
     distance: "35 km from City Centre",
   },
   {
@@ -119,10 +112,9 @@ const AREAS = [
       "The heart of Vizag's residential and commercial activity. MVP Colony offers unmatched connectivity, upscale living, and premium investment potential.",
     tags: ["City Centre", "Premium Locality", "High Connectivity"],
     icon: "Building2",
-    image:
-      "https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?w=800&h=560&fit=crop&auto=format",
+    // Urban city centre skyline / busy commercial streets
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 80L – ₹ 2Cr",
     distance: "City Centre",
   },
   {
@@ -134,10 +126,9 @@ const AREAS = [
       "The cultural capital of North Andhra is witnessing robust real estate growth driven by educational hubs, infrastructure projects, and proximity to Vizag.",
     tags: ["Educational Hub", "Cultural City", "Affordable Land"],
     icon: "Trees",
-    image:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=560&fit=crop&auto=format",
+    // Heritage fort / cultural architecture
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 6L – ₹ 22L",
     distance: "42 km from Vizag",
   },
   {
@@ -149,10 +140,9 @@ const AREAS = [
       "A fast-emerging residential corridor along the outskirts of Vizag offering affordable homes and plots with all modern amenities and excellent road connectivity.",
     tags: ["Affordable Housing", "Road Connectivity", "Growing Area"],
     icon: "Home",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=560&fit=crop&auto=format",
+    // Suburban residential area with wide roads
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 20L – ₹ 60L",
     distance: "25 km from City Centre",
   },
   {
@@ -164,10 +154,9 @@ const AREAS = [
       "An upcoming industrial and residential zone with rapid development, excellent NH-16 access, and strong investment potential in open plots.",
     tags: ["Industrial Corridor", "NH-16 Access", "Investment Zone"],
     icon: "Trees",
-    image:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop&auto=format",
+    // Open land / agricultural plots with horizon
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 4L – ₹ 15L",
     distance: "50 km from Vizag",
   },
   {
@@ -179,10 +168,9 @@ const AREAS = [
       "Located near Vizag's railway junction and industrial zone, Duvvada is a strategically positioned residential area with excellent transport and infrastructure.",
     tags: ["Railway Junction", "Industrial Proximity", "Transport Hub"],
     icon: "Home",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=560&fit=crop&auto=format",
+    // Railway station / transport hub
+    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&h=560&fit=crop&auto=format",
     projects: 1,
-    priceRange: "₹ 30L – ₹ 70L",
     distance: "15 km from City Centre",
   },
 ];
@@ -335,23 +323,12 @@ export default function Areas() {
                     {area.description}
                   </p>
 
-                  {/* Info row */}
-                  <div className="grid grid-cols-2 gap-3 mb-4 pt-4 border-t border-[#E5E7EB]">
+                  {/* Info row — Distance only */}
+                  <div className="flex items-center gap-2 mb-4 pt-4 border-t border-[#E5E7EB]">
+                    <MapPin size={12} className="text-primary shrink-0" />
                     <div>
-                      <div className="text-[10px] tracking-[0.15em] text-[#6B7280] uppercase">
-                        Price Range
-                      </div>
-                      <div className="text-xs text-[#1F2937] font-semibold mt-0.5">
-                        {area.priceRange}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] tracking-[0.15em] text-[#6B7280] uppercase">
-                        Distance
-                      </div>
-                      <div className="text-xs text-[#1F2937] font-medium mt-0.5">
-                        {area.distance}
-                      </div>
+                      <div className="text-[10px] tracking-[0.15em] text-[#6B7280] uppercase">Distance</div>
+                      <div className="text-xs text-[#1F2937] font-medium mt-0.5">{area.distance}</div>
                     </div>
                   </div>
 
