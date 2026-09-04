@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Loader2, AlertCircle } from "lucide-react";
-import emailjs from "@emailjs/browser";
 
 // ─────────────────────────────────────────────────────────────
-// EMAILJS CONFIGURATION
-// Fill in your EmailJS credentials from https://www.emailjs.com
+// WEB3FORMS — sends email directly to ngkinfra99@gmail.com
+// Step 1: Go to https://web3forms.com
+// Step 2: Enter ngkinfra99@gmail.com → click "Get Access Key"
+// Step 3: Check ngkinfra99@gmail.com inbox, copy the key
+// Step 4: Paste the key below replacing YOUR_ACCESS_KEY_HERE
 // ─────────────────────────────────────────────────────────────
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // e.g. "service_abc123"
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // e.g. "template_xyz456"
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // e.g. "abcDEF123ghiJKL"
-// ─────────────────────────────────────────────────────────────
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
 
 function buildAutoMessage(name: string, phone: string, interest: string) {
   const parts = [
@@ -45,21 +44,44 @@ export default function Contact() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name:   form.name,
-          from_phone:  form.phone,
-          from_email:  form.email || "Not provided",
-          interest:    form.interest || "Not specified",
-          message:     form.message,
-          to_email:    "ngkinfra99@gmail.com",
-        },
-        EMAILJS_PUBLIC_KEY
+
+    // If key not configured yet, fall back to mailto:
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+      const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
+      const body = encodeURIComponent(
+        `New enquiry from NGK Infra website.\n\n` +
+        `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || "Not provided"}\n` +
+        `Interested In: ${form.interest || "Not specified"}\n\nMessage:\n${form.message}`
       );
-      setSubmitted(true);
+      window.open(`mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`);
+      setTimeout(() => { setLoading(false); setSubmitted(true); }, 600);
+      return;
+    }
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject:    `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
+          from_name:  form.name,
+          email:      form.email || "not-provided@ngkinfra.com",
+          message: (
+            `Name: ${form.name}\n` +
+            `Phone: ${form.phone}\n` +
+            `Email: ${form.email || "Not provided"}\n` +
+            `Interested In: ${form.interest || "Not specified"}\n\n` +
+            `Message:\n${form.message}`
+          ),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        throw new Error(data.message || "Submission failed");
+      }
     } catch {
       setError("Failed to send enquiry. Please try again or call us directly.");
     } finally {
