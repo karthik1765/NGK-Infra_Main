@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Load
 
 function buildAutoMessage(name: string, phone: string, interest: string) {
   const parts = [
-    `Hello NGK Infra Team,`,
+    `Hello NGK Infra Developers Team,`,
     ``,
     `I am ${name || "[Your Name]"}${phone ? ` (Phone: ${phone})` : ""} and I am interested in ${interest || "your properties"}.`,
     ``,
@@ -40,14 +40,14 @@ export default function Contact() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          name:       form.name,
-          email:      form.email || "not-provided@ngkinfra.com",
-          phone:      form.phone,
-          interest:   form.interest || "Not specified",
-          message:    form.message,
-          _subject:   `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
-          _template:  "table",
-          _captcha:   "false",
+          name: form.name,
+          email: form.email || "not-provided@ngkinfra.com",
+          phone: form.phone,
+          interest: form.interest || "Not specified",
+          message: form.message,
+          _subject: `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
+          _template: "table",
+          _captcha: "false",
           _autoresponse: `Thank you ${form.name}, we have received your enquiry and will get back to you shortly. — NGK Infra Team`,
         }),
       });
