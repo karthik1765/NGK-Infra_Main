@@ -35,19 +35,34 @@ export default function Contact() {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    const emailBody =
+      `Name: ${form.name}\n` +
+      `Phone: ${form.phone}\n` +
+      `Email: ${form.email || "Not provided"}\n` +
+      `Interested In: ${form.interest || "Not specified"}\n\n` +
+      `Message:\n${form.message}`;
+
+    const mailtoFallback = () => {
+      const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
+      const body = encodeURIComponent(emailBody);
+      window.open(`https://mail.google.com/mail/?view=cm&to=ngkinfra99@gmail.com&su=${subject}&body=${body}`, "_blank");
+      setTimeout(() => { setLoading(false); setSubmitted(true); }, 400);
+    };
+
     try {
       const res = await fetch("https://formsubmit.co/ajax/ngkinfra99@gmail.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          name: form.name,
-          email: form.email || "not-provided@ngkinfra.com",
-          phone: form.phone,
-          interest: form.interest || "Not specified",
-          message: form.message,
-          _subject: `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
+          name:      form.name,
+          email:     form.email || "not-provided@ngkinfra.com",
+          phone:     form.phone,
+          interest:  form.interest || "Not specified",
+          message:   emailBody,
+          _subject:  `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
           _template: "table",
-          _captcha: "false",
+          _captcha:  "false",
           _autoresponse: `Thank you ${form.name}, we have received your enquiry and will get back to you shortly. — NGK Infra Team`,
         }),
       });
@@ -55,10 +70,12 @@ export default function Contact() {
       if (data.success === "true" || data.success === true) {
         setSubmitted(true);
       } else {
-        throw new Error("Submission failed");
+        // FormSubmit not yet activated — fall back to Gmail compose
+        mailtoFallback();
       }
     } catch {
-      setError("Could not send enquiry. Please call us at +91 93986 91219 or email ngkinfra99@gmail.com directly.");
+      // Network/CORS error — fall back to Gmail compose
+      mailtoFallback();
     } finally {
       setLoading(false);
     }
