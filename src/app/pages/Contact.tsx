@@ -51,7 +51,7 @@ export default function Contact() {
     };
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/ngkinfra99@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/xobaka", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
