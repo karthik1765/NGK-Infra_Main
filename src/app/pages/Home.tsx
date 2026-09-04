@@ -489,32 +489,19 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 3 rows × 4 image cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* 3 rows × 4 location chips — no images */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {HOME_AREAS.map((area, i) => (
               <Link
                 key={i}
                 to="/areas"
-                className="group rounded-lg overflow-hidden border border-[#E5E7EB] bg-white hover:border-primary hover:shadow-lg transition-all duration-300"
+                className="group flex flex-col items-center justify-center gap-1.5 py-5 px-3 bg-white border border-[#E5E7EB] rounded-lg hover:border-primary hover:shadow-md transition-all duration-200 text-center"
               >
-                <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                  <img
-                    src={area.image}
-                    alt={area.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
-                    <h3 className="text-white text-sm font-bold leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                      {area.name}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 px-3 py-2">
-                  <MapPin size={11} className="text-primary shrink-0" />
-                  <span className="text-[11px] text-[#6B7280] font-medium truncate">{area.region}</span>
-                </div>
+                <MapPin size={18} className="text-primary group-hover:scale-110 transition-transform duration-200" />
+                <span className="text-sm font-bold text-[#1F2937] group-hover:text-primary transition-colors leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  {area.name}
+                </span>
+                <span className="text-[11px] text-[#9CA3AF] font-medium leading-tight">{area.region}</span>
               </Link>
             ))}
           </div>
