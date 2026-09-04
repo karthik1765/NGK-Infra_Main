@@ -2,6 +2,21 @@ import { Link } from "react-router";
 import { Phone, ArrowRight, Award, Home as HomeIcon, Calendar, ChevronRight, MapPin, X, ChevronLeft, ZoomIn } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 
+const HOME_AREAS = [
+  { name: "Bhogapuram", region: "Vizianagaram District", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=420&fit=crop&auto=format" },
+  { name: "Gajuwaka", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=600&h=420&fit=crop&auto=format" },
+  { name: "Tagarapuvalasa", region: "Visakhapatnam District", image: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=600&h=420&fit=crop&auto=format" },
+  { name: "Rushikonda", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=420&fit=crop&auto=format" },
+  { name: "Madhurawada", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=420&fit=crop&auto=format" },
+  { name: "Kommadi", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1448630360428-65456885c650?w=600&h=420&fit=crop&auto=format" },
+  { name: "Bheemili", region: "Visakhapatnam District", image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=420&fit=crop&auto=format" },
+  { name: "MVP Colony", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&h=420&fit=crop&auto=format" },
+  { name: "Vizianagaram", region: "Vizianagaram District", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=420&fit=crop&auto=format" },
+  { name: "Pendurthi", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=420&fit=crop&auto=format" },
+  { name: "Anakapalle", region: "Visakhapatnam District", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=420&fit=crop&auto=format" },
+  { name: "Duvvada", region: "Visakhapatnam", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&h=420&fit=crop&auto=format" },
+];
+
 const HERO_SLIDES = [
   {
     src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop&auto=format",
@@ -461,7 +476,7 @@ export default function Home() {
       {/* ── 10+ AREAS SECTION ── */}
       <section className="py-20 px-6 bg-[#F9FAFB]">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <p className="text-primary text-xs tracking-[0.35em] uppercase mb-3 font-semibold">Our Reach</p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               We are available in{" "}
@@ -474,34 +489,44 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Location chips — no images, names only */}
-          <div className="flex flex-wrap gap-3">
-            {[
-              "Gajuwaka",
-              "Kommadi",
-              "Rushikonda",
-              "Madhurawada",
-              "Bheemunipatnam",
-              "Pendurthi",
-              "Duvvada",
-              "Sabbavaram",
-              "Beach Oriented",
-              "Tagarapuvalasa",
-              "Anakapalle",
-              "Vizag City",
-            ].map((name) => (
+          {/* 3 rows × 4 image cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {HOME_AREAS.map((area, i) => (
               <Link
-                key={name}
+                key={i}
                 to="/areas"
-                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E5E7EB] rounded-full text-sm font-semibold text-[#1F2937] hover:border-primary hover:text-primary hover:shadow-md transition-all duration-200 group"
+                className="group rounded-lg overflow-hidden border border-[#E5E7EB] bg-white hover:border-primary hover:shadow-lg transition-all duration-300"
               >
-                <MapPin size={13} className="text-primary shrink-0" />
-                {name}
-                <ArrowRight size={12} className="ml-0.5 text-[#D1D5DB] group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+                <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                  <img
+                    src={area.image}
+                    alt={area.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
+                    <h3 className="text-white text-sm font-bold leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                      {area.name}
+                    </h3>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-2">
+                  <MapPin size={11} className="text-primary shrink-0" />
+                  <span className="text-[11px] text-[#6B7280] font-medium truncate">{area.region}</span>
+                </div>
               </Link>
             ))}
           </div>
 
+          <div className="text-center mt-8">
+            <Link
+              to="/areas"
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-200 group text-sm"
+            >
+              View all areas <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 

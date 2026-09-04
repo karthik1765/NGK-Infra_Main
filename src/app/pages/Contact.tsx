@@ -1,24 +1,70 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
+
+// ─────────────────────────────────────────────────────────────
+// EMAILJS CONFIGURATION
+// Fill in your EmailJS credentials from https://www.emailjs.com
+// ─────────────────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // e.g. "service_abc123"
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // e.g. "template_xyz456"
+const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // e.g. "abcDEF123ghiJKL"
+// ─────────────────────────────────────────────────────────────
+
+function buildAutoMessage(name: string, phone: string, interest: string) {
+  const parts = [
+    `Hello NGK Infra Team,`,
+    ``,
+    `I am ${name || "[Your Name]"}${phone ? ` (Phone: ${phone})` : ""} and I am interested in ${interest || "your properties"}.`,
+    ``,
+    `Please share details about pricing, availability, and location. I would also like to schedule a site visit at your earliest convenience.`,
+    ``,
+    `Looking forward to hearing from you.`,
+    ``,
+    `Regards,`,
+    name || "[Your Name]",
+  ];
+  return parts.join("\n");
+}
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", interest: "", message: "" });
+  const [msgEdited, setMsgEdited] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Auto-generate message when key fields change (unless user has manually edited the message)
+  useEffect(() => {
+    if (!msgEdited) {
+      setForm((prev) => ({ ...prev, message: buildAutoMessage(prev.name, prev.phone, prev.interest) }));
+    }
+  }, [form.name, form.phone, form.interest, msgEdited]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
-    const body = encodeURIComponent(
-      `New enquiry from NGK Infra website.\n\n` +
-      `Name: ${form.name}\n` +
-      `Phone: ${form.phone}\n` +
-      `Email: ${form.email || "Not provided"}\n` +
-      `Interested In: ${form.interest || "Not specified"}\n\n` +
-      `Message:\n${form.message || "No message provided"}`
-    );
-    window.location.href = `mailto:ngkinfra99@gmail.com?subject=${subject}&body=${body}`;
-    // Delay success state so the mailto link can open before UI changes
-    setTimeout(() => setSubmitted(true), 500);
+    setError("");
+    setLoading(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name:   form.name,
+          from_phone:  form.phone,
+          from_email:  form.email || "Not provided",
+          interest:    form.interest || "Not specified",
+          message:     form.message,
+          to_email:    "ngkinfra99@gmail.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+    } catch {
+      setError("Failed to send enquiry. Please try again or call us directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -157,6 +203,13 @@ export default function Contact() {
                   </h3>
                 </div>
 
+                {error && (
+                  <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-sm">
+                    <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase block mb-2">Full Name *</label>
@@ -210,22 +263,35 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase block mb-2">Message</label>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase">Message</label>
+                    {msgEdited && (
+                      <button
+                        type="button"
+                        onClick={() => { setMsgEdited(false); }}
+                        className="text-[10px] text-primary underline hover:text-[#EA580C] transition-colors"
+                      >
+                        Reset auto-text
+                      </button>
+                    )}
+                  </div>
                   <textarea
-                    rows={4}
+                    rows={6}
                     value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    onChange={(e) => { setMsgEdited(true); setForm({ ...form, message: e.target.value }); }}
                     placeholder="Tell us your requirements, preferred location, budget range..."
-                    className="w-full bg-white border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors resize-none"
+                    className="w-full bg-[#F9FAFB] border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors resize-none font-mono"
                   />
+                  <p className="text-[10px] text-[#9CA3AF] mt-1">✦ Message auto-filled from your details. You can edit or reset it anytime.</p>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-4 font-medium tracking-wide hover:bg-[#EA580C] transition-all duration-200 group rounded-sm"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-4 font-medium tracking-wide hover:bg-[#EA580C] transition-all duration-200 group rounded-sm disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <Send size={16} />
-                  Send Enquiry
+                  {loading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  {loading ? "Sending..." : "Send Enquiry"}
                 </button>
 
                 <p className="text-xs text-[#6B7280] text-center">
