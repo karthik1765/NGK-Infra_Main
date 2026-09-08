@@ -1,35 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 
-function buildAutoMessage(name: string, phone: string, interest: string) {
-  const parts = [
-    `Hello NGK Infra Developers Team,`,
-    ``,
-    `I am ${name || "[Your Name]"}${phone ? ` (Phone: ${phone})` : ""} and I am interested in ${interest || "your properties"}.`,
-    ``,
-    `Please share details about pricing, availability, and location. I would also like to schedule a site visit at your earliest convenience.`,
-    ``,
-    `Looking forward to hearing from you.`,
-    ``,
-    `Regards,`,
-    name || "[Your Name]",
-  ];
-  return parts.join("\n");
-}
-
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", interest: "", message: "" });
-  const [msgEdited, setMsgEdited] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", interest: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  // Auto-generate message when key fields change (unless user has manually edited it)
-  useEffect(() => {
-    if (!msgEdited) {
-      setForm((prev) => ({ ...prev, message: buildAutoMessage(prev.name, prev.phone, prev.interest) }));
-    }
-  }, [form.name, form.phone, form.interest, msgEdited]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,9 +15,7 @@ export default function Contact() {
     const emailBody =
       `Name: ${form.name}\n` +
       `Phone: ${form.phone}\n` +
-      `Email: ${form.email || "Not provided"}\n` +
-      `Interested In: ${form.interest || "Not specified"}\n\n` +
-      `Message:\n${form.message}`;
+      `Interested In: ${form.interest || "Not specified"}`;
 
     const mailtoFallback = () => {
       const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
@@ -55,14 +29,14 @@ export default function Contact() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          name:      form.name,
-          email:     form.email || "not-provided@ngkinfra.com",
-          phone:     form.phone,
-          interest:  form.interest || "Not specified",
-          message:   emailBody,
-          _subject:  `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
+          name: form.name,
+          email: "not-provided@ngkinfra.com",
+          phone: form.phone,
+          interest: form.interest || "Not specified",
+          message: emailBody,
+          _subject: `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
           _template: "table",
-          _captcha:  "false",
+          _captcha: "false",
           _autoresponse: `Thank you ${form.name}, we have received your enquiry and will get back to you shortly. — NGK Infra Team`,
         }),
       });
@@ -70,11 +44,9 @@ export default function Contact() {
       if (data.success === "true" || data.success === true) {
         setSubmitted(true);
       } else {
-        // FormSubmit not yet activated — fall back to Gmail compose
         mailtoFallback();
       }
     } catch {
-      // Network/CORS error — fall back to Gmail compose
       mailtoFallback();
     } finally {
       setLoading(false);
@@ -103,97 +75,12 @@ export default function Contact() {
       </section>
 
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-16">
+        <div className="max-w-3xl mx-auto space-y-16">
 
-          {/* LEFT — INFO */}
-          <div className="lg:col-span-2 space-y-10">
-            <div>
-              <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-medium">Get In Touch</p>
-              <h2 className="text-3xl font-semibold text-[#1F2937] mb-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Let our team guide<br /><em className="text-primary">you home</em>
-              </h2>
-              <p className="text-[#6B7280] leading-relaxed text-sm">
-                Whether you&apos;re looking for a 2 BHK apartment, a luxury villa, or an open plot —
-                our experts are ready to help you find the perfect match within your budget.
-              </p>
-            </div>
-
-            <div className="space-y-5">
-              {[
-                {
-                  icon: <Phone size={18} className="text-primary" />,
-                  label: "Sales",
-                  value: "+91 93986 91219",
-                  href: "tel:+919398691219",
-                },
-                {
-                  icon: <Phone size={18} className="text-primary" />,
-                  label: "Customer Support",
-                  value: "+91 93925 52843",
-                  href: "tel:+919392552843",
-                },
-                {
-                  icon: <Mail size={18} className="text-primary" />,
-                  label: "Email",
-                  value: "ngkinfra99@gmail.com",
-                  href: "mailto:ngkinfra99@gmail.com",
-
-                },
-                {
-                  icon: <MapPin size={18} className="text-primary" />,
-                  label: "Office",
-                  value: "Vizag, Andhra Pradesh",
-                  href: "#",
-                },
-                {
-                  icon: <Clock size={18} className="text-primary" />,
-                  label: "Office Hours",
-                  value: "Mon – Sat, 9 AM – 7 PM",
-                  href: null,
-                },
-              ].map((c, i) => (
-                <div key={i} className="flex gap-4 items-start">
-                  <div className="w-10 h-10 border border-[#E5E7EB] flex items-center justify-center shrink-0">
-                    {c.icon}
-                  </div>
-                  <div>
-                    <div className="text-xs tracking-[0.15em] text-[#6B7280] uppercase mb-0.5">{c.label}</div>
-                    {c.href ? (
-                      <a href={c.href} className="text-sm text-[#1F2937] hover:text-primary transition-colors">{c.value}</a>
-                    ) : (
-                      <span className="text-sm text-[#1F2937]">{c.value}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <div className="text-xs tracking-[0.25em] text-[#6B7280] uppercase mb-4">Follow Us</div>
-              <div className="flex gap-3">
-                {[
-                  { icon: <Instagram size={16} />, label: "Instagram", href: "https://www.instagram.com/ngk_infra99?igsh=bm5sZHlqd20xZ2g2" },
-                  { icon: <Youtube size={16} />, label: "YouTube", href: "https://youtube.com/@ngkinfra?si=EntM3gufJ5sRoXsR" },
-                ].map(({ icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="w-10 h-10 border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:text-primary hover:border-primary transition-all duration-200"
-                  >
-                    {icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — FORM */}
-          <div className="lg:col-span-3 bg-white border border-[#E5E7EB] p-8 md:p-10 hover:shadow-md transition-shadow duration-300">
+          {/* ENQUIRY FORM */}
+          <div className="bg-white border border-[#E5E7EB] p-8 md:p-10 hover:shadow-md transition-shadow duration-300">
             {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-16 gap-5">
+              <div className="flex flex-col items-center justify-center text-center py-16 gap-5">
                 <CheckCircle className="text-primary" size={48} />
                 <h3 className="text-2xl font-semibold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   Thank you for reaching out!
@@ -250,17 +137,6 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase block mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="your@email.com"
-                    className="w-full bg-white border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
-
-                <div>
                   <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase block mb-2">Interested In</label>
                   <select
                     value={form.interest}
@@ -268,35 +144,12 @@ export default function Contact() {
                     className="w-full bg-white border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] focus:outline-none focus:border-primary transition-colors appearance-none"
                   >
                     <option value="" disabled>Select a project type</option>
-                    <option>2 BHK Apartment</option>
-                    <option>3 BHK Apartment</option>
                     <option>Open Plot</option>
                     <option>Villa</option>
+                    <option>2 BHK Apartment</option>
+                    <option>3 BHK Apartment</option>
                     <option>Other</option>
                   </select>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase">Message</label>
-                    {msgEdited && (
-                      <button
-                        type="button"
-                        onClick={() => { setMsgEdited(false); }}
-                        className="text-[10px] text-primary underline hover:text-[#EA580C] transition-colors"
-                      >
-                        Reset auto-text
-                      </button>
-                    )}
-                  </div>
-                  <textarea
-                    rows={6}
-                    value={form.message}
-                    onChange={(e) => { setMsgEdited(true); setForm({ ...form, message: e.target.value }); }}
-                    placeholder="Tell us your requirements, preferred location, budget range..."
-                    className="w-full bg-[#F9FAFB] border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors resize-none font-mono"
-                  />
-                  <p className="text-[10px] text-[#9CA3AF] mt-1">✦ Message auto-filled from your details. You can edit or reset it anytime.</p>
                 </div>
 
                 <button
@@ -307,24 +160,98 @@ export default function Contact() {
                   {loading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
                   {loading ? "Sending..." : "Send Enquiry"}
                 </button>
-
-                <p className="text-xs text-[#6B7280] text-center">
-                  We respect your privacy. Your details will not be shared with third parties.
-                </p>
               </form>
             )}
           </div>
+
+          {/* CONTACT DETAILS */}
+          <div className="space-y-10">
+            <div>
+              <p className="text-primary text-xs tracking-[0.35em] uppercase mb-4 font-medium">Get In Touch</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              {[
+                {
+                  icon: <Phone size={18} className="text-primary" />,
+                  label: "Sales",
+                  value: "+91 93986 91219",
+                  href: "tel:+919398691219",
+                },
+                {
+                  icon: <Phone size={18} className="text-primary" />,
+                  label: "Customer Support",
+                  value: "+91 90148 71219",
+                  href: "tel:+919014871219",
+                },
+                {
+                  icon: <Mail size={18} className="text-primary" />,
+                  label: "Email",
+                  value: "ngkinfra99@gmail.com",
+                  href: "mailto:ngkinfra99@gmail.com",
+                },
+                {
+                  icon: <MapPin size={18} className="text-primary" />,
+                  label: "Office",
+                  value: "opp CMR central, Gajuwaka, Visakhapatnam",
+                  href: "#",
+                },
+                {
+                  icon: <Clock size={18} className="text-primary" />,
+                  label: "Office Hours",
+                  value: "Mon – Sat, 9 AM – 7 PM",
+                  href: null,
+                },
+              ].map((c, i) => (
+                <div key={i} className="flex gap-4 items-start">
+                  <div className="w-10 h-10 border border-[#E5E7EB] flex items-center justify-center shrink-0">
+                    {c.icon}
+                  </div>
+                  <div>
+                    <div className="text-xs tracking-[0.15em] text-[#6B7280] uppercase mb-0.5">{c.label}</div>
+                    {c.href ? (
+                      <a href={c.href} className="text-sm text-[#1F2937] hover:text-primary transition-colors">{c.value}</a>
+                    ) : (
+                      <span className="text-sm text-[#1F2937]">{c.value}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <div className="text-xs tracking-[0.25em] text-[#6B7280] uppercase mb-4">Follow Us</div>
+              <div className="flex gap-3">
+                {[
+                  { icon: <Instagram size={16} />, label: "Instagram", href: "https://www.instagram.com/ngk_infra99?igsh=bm5sZHlqd20xZ2g2" },
+                  { icon: <Youtube size={16} />, label: "YouTube", href: "https://youtube.com/@ngkinfra?si=EntM3gufJ5sRoXsR" },
+                ].map(({ icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:text-primary hover:border-primary transition-all duration-200"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* MAP — centered & compact */}
+      {/* MAP */}
       <section className="py-12 px-6 bg-[#F9FAFB] border-t border-[#E5E7EB]">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-2 mb-4">
             <MapPin className="text-primary shrink-0" size={18} />
             <div>
               <p className="text-sm font-semibold text-[#1F2937]">NGK Infra Developers Office</p>
-              <p className="text-xs text-[#6B7280]">Vizag, Andhra Pradesh</p>
+              <p className="text-xs text-[#6B7280]">Opp CMR central, Gajuwaka, Visakhapatnam</p>
             </div>
           </div>
           <div className="relative h-64 md:h-80 overflow-hidden rounded-sm border border-[#E5E7EB] shadow-md">
