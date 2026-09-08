@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", phone: "", interest: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", interest: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -15,6 +15,7 @@ export default function Contact() {
     const emailBody =
       `Name: ${form.name}\n` +
       `Phone: ${form.phone}\n` +
+      `Email: ${form.email}\n` +
       `Interested In: ${form.interest || "Not specified"}`;
 
     const mailtoFallback = () => {
@@ -30,7 +31,7 @@ export default function Contact() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           name: form.name,
-          email: "not-provided@ngkinfra.com",
+          email: form.email,
           phone: form.phone,
           interest: form.interest || "Not specified",
           message: emailBody,
@@ -134,6 +135,18 @@ export default function Contact() {
                       className="w-full bg-white border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors"
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="text-xs tracking-[0.15em] text-[#6B7280] uppercase block mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="your@email.com"
+                    className="w-full bg-white border border-[#E5E7EB] px-4 py-3 text-sm text-[#1F2937] placeholder:text-[#6B7280] focus:outline-none focus:border-primary transition-colors"
+                  />
                 </div>
 
                 <div>
