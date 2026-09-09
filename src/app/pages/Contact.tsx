@@ -33,6 +33,7 @@ export default function Contact() {
           from_email: form.email,
           phone:      form.phone,
           interest:   form.interest || "Not specified",
+          to_email:   "ngkinfra99@gmail.com",
           Subject:    `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
         },
         { publicKey: EMAILJS_PUBLIC_KEY }  // v4.x requires options object
