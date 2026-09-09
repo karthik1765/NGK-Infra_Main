@@ -29,17 +29,11 @@ export default function Contact() {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          from_name:    form.name,
-          from_email:   form.email,
-          phone:        form.phone,
-          interest:     form.interest || "Not specified",
-          to_email:     "ngkinfra99@gmail.com",
-          Subject:      `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
-          message:
-            `Name: ${form.name}\n` +
-            `Phone: ${form.phone}\n` +
-            `Email: ${form.email}\n` +
-            `Interested In: ${form.interest || "Not specified"}`,
+          from_name:  form.name,
+          from_email: form.email,
+          phone:      form.phone,
+          interest:   form.interest || "Not specified",
+          Subject:    `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
         },
         { publicKey: EMAILJS_PUBLIC_KEY }  // v4.x requires options object
       );
