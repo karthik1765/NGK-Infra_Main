@@ -1,5 +1,17 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Phone, Mail, MapPin, Clock, Send, Instagram, Youtube, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+
+// ─── EmailJS Configuration ───────────────────────────────────────────────────
+// Replace these placeholders with your actual EmailJS credentials.
+// Sign up free at https://www.emailjs.com/ then:
+//   1. Add Email Service (Gmail) → copy Service ID
+//   2. Create Email Template     → copy Template ID
+//   3. Account → API Keys        → copy Public Key
+const EMAILJS_SERVICE_ID  = "service_ixh955k";
+const EMAILJS_TEMPLATE_ID = "template_a7keh5r";
+const EMAILJS_PUBLIC_KEY  = "LeM8o1ZMPTzrp51BS";
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", interest: "" });
@@ -12,43 +24,33 @@ export default function Contact() {
     setError("");
     setLoading(true);
 
-    const emailBody =
-      `Name: ${form.name}\n` +
-      `Phone: ${form.phone}\n` +
-      `Email: ${form.email}\n` +
-      `Interested In: ${form.interest || "Not specified"}`;
-
-    const mailtoFallback = () => {
-      const subject = encodeURIComponent(`Property Enquiry — ${form.interest || "General"} | ${form.name}`);
-      const body = encodeURIComponent(emailBody);
-      window.open(`https://mail.google.com/mail/?view=cm&to=ngkinfra99@gmail.com&su=${subject}&body=${body}`, "_blank");
-      setTimeout(() => { setLoading(false); setSubmitted(true); }, 400);
-    };
-
     try {
-      const res = await fetch("https://formsubmit.co/ajax/xobaka", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          interest: form.interest || "Not specified",
-          message: emailBody,
-          _subject: `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
-          _template: "table",
-          _captcha: "false",
-          _autoresponse: `Thank you ${form.name}, we have received your enquiry and will get back to you shortly. — NGK Infra Team`,
-        }),
-      });
-      const data = await res.json();
-      if (data.success === "true" || data.success === true) {
-        setSubmitted(true);
-      } else {
-        mailtoFallback();
-      }
-    } catch {
-      mailtoFallback();
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name:    form.name,
+          from_email:   form.email,
+          phone:        form.phone,
+          interest:     form.interest || "Not specified",
+          to_email:     "ngkinfra99@gmail.com",
+          Subject:      `Property Enquiry — ${form.interest || "General"} | ${form.name}`,
+          message:
+            `Name: ${form.name}\n` +
+            `Phone: ${form.phone}\n` +
+            `Email: ${form.email}\n` +
+            `Interested In: ${form.interest || "Not specified"}`,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }  // v4.x requires options object
+      );
+      setSubmitted(true);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message
+        : typeof err === "object" && err !== null && "text" in err
+          ? String((err as { text: unknown }).text)
+          : JSON.stringify(err);
+      console.error("EmailJS error:", msg);
+      setError(`Send failed: ${msg}`);
     } finally {
       setLoading(false);
     }
