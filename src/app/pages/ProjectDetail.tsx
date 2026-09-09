@@ -61,13 +61,11 @@ const PROJECT_DATA = {
       "Borewell Facility & Electrical Poles at Initial Stage",
       "Security Guard Facility for 3 Years by Company",
     ],
-    coverImage: "/projects/sree-vaaraahi-gardens/page2.png",
+    coverImage: "/projects/sree-vaaraahi-gardens/page3.jpg",
     gallery: [
-      { src: "/projects/sree-vaaraahi-gardens/page1.jpg", caption: "Sree Vaaraahi Gardens — Master Layout Plan" },
-      { src: "/projects/sree-vaaraahi-gardens/page2.png", caption: "Project Overview — Premium Residential Plots" },
-      { src: "/projects/sree-vaaraahi-gardens/page3.png", caption: "Site View — Surrounding Neighbourhood" },
-      { src: "/projects/sree-vaaraahi-gardens/page4.png", caption: "Site View — Plot Area & Development" },
-      { src: "/projects/sree-vaaraahi-gardens/page5.jpg", caption: "Prime Plots Near Kurmannapalem — Highlights & Pricing" },
+      { src: "/projects/sree-vaaraahi-gardens/page1.jpg", caption: "Sree Vaaraahi Gardens — Master Layout Plan (381 Plots)" },
+      { src: "/projects/sree-vaaraahi-gardens/page2.jpg", caption: "Plots For Sale — Near Kurmannapalem, Steel Plant & AMTZ" },
+      { src: "/projects/sree-vaaraahi-gardens/page3.jpg", caption: "Premium Residential Plots — NGK Infra Developers, Gajuwaka" },
     ],
   },
 };

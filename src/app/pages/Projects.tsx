@@ -48,7 +48,7 @@ const PROJECTS = [
     config: "Multiple Sizes",
     highlights: ["3 KM to Steel Plant Main Gate", "3 KM to Proposed Metro Station", "Within GVMC Limits", "24/7 CCTV Surveillance & Security"],
     tag: "Near Kurmannapalem & Steel Plant",
-    image: "/projects/sree-vaaraahi-gardens/page2.png",
+    image: "/projects/sree-vaaraahi-gardens/page2.jpg",
     status: "Ongoing",
     slug: "sree-vaaraahi-gardens",
     desc: "Sree Vaaraahi Gardens is a premium residential plot venture at Ginnivanipalem, Pedagantyada — strategically positioned near the Steel Plant, AMTZ, and the proposed Metro Station with all modern infrastructure in place.",
