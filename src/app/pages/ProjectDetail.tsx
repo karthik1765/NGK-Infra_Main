@@ -296,33 +296,33 @@ export default function ProjectDetail() {
             </div>
 
             {project.gallery.length > 0 && (
-            <div className="bg-white border border-[#E5E7EB] p-8 rounded-sm">
-              <div className="h-0.5 w-8 bg-primary mb-5" />
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>Project Gallery</h2>
-                <span className="text-xs text-[#6B7280] bg-[#F3F4F6] px-3 py-1 rounded-full border border-[#E5E7EB]">{project.gallery.length} photos · auto-scroll</span>
-              </div>
+              <div className="bg-white border border-[#E5E7EB] p-8 rounded-sm">
+                <div className="h-0.5 w-8 bg-primary mb-5" />
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-semibold text-[#1F2937]" style={{ fontFamily: "'Montserrat', sans-serif" }}>Project Gallery</h2>
+                  <span className="text-xs text-[#6B7280] bg-[#F3F4F6] px-3 py-1 rounded-full border border-[#E5E7EB]">{project.gallery.length} photos · auto-scroll</span>
+                </div>
 
-              <AutoCarousel images={project.gallery} onImageClick={(i) => setLightboxIndex(i)} />
+                <AutoCarousel images={project.gallery} onImageClick={(i) => setLightboxIndex(i)} />
 
-              <div className="grid grid-cols-4 gap-2 mt-3">
-                {project.gallery.map((img, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setLightboxIndex(i)}
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm group border border-[#E5E7EB] hover:border-primary/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    title={img.caption}
-                  >
-                    <img src={img.src} alt={img.caption} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                      <ZoomIn size={14} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="absolute top-1 right-1 bg-black/50 text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full leading-none">{i + 1}</div>
-                  </button>
-                ))}
+                <div className="grid grid-cols-4 gap-2 mt-3">
+                  {project.gallery.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setLightboxIndex(i)}
+                      className="relative aspect-[16/10] overflow-hidden rounded-sm group border border-[#E5E7EB] hover:border-primary/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      title={img.caption}
+                    >
+                      <img src={img.src} alt={img.caption} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                        <ZoomIn size={14} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="absolute top-1 right-1 bg-black/50 text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full leading-none">{i + 1}</div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-center text-xs text-[#9CA3AF] mt-3">Auto-scrolls every 4 seconds · Click any photo for full-screen gallery · Use arrow keys to navigate</p>
               </div>
-              <p className="text-center text-xs text-[#9CA3AF] mt-3">Auto-scrolls every 4 seconds · Click any photo for full-screen gallery · Use arrow keys to navigate</p>
-            </div>
             )}
           </div>
 
