@@ -64,10 +64,10 @@ const PROJECT_DATA = {
     coverImage: "/projects/sree-vaaraahi-gardens/page5.jpg",
     gallery: [
       { src: "/projects/sree-vaaraahi-gardens/page1.jpg", caption: "Sree Vaaraahi Gardens — Master Layout Plan (381 Plots)" },
-      { src: "/projects/sree-vaaraahi-gardens/page2.jpg", caption: "Plots For Sale — Near Kurmannapalem, Steel Plant & AMTZ" },
+      { src: "/projects/sree-vaaraahi-gardens/page5.jpg", caption: "Premium Residential Plots — NGK Infra Developers, Gajuwaka" },
       { src: "/projects/sree-vaaraahi-gardens/page3.png", caption: "Site View — Surrounding Neighbourhood" },
       { src: "/projects/sree-vaaraahi-gardens/page4.png", caption: "Site View — Plot Area & Development" },
-      { src: "/projects/sree-vaaraahi-gardens/page5.jpg", caption: "Premium Residential Plots — NGK Infra Developers, Gajuwaka" },
+
     ],
   },
 };
