@@ -62,7 +62,13 @@ const PROJECT_DATA = {
       "Security Guard Facility for 3 Years by Company",
     ],
     coverImage: "/projects/sree-vaaraahi-gardens/page5.jpg",
-    gallery: [],
+    gallery: [
+      { src: "/projects/sree-vaaraahi-gardens/page1.png", caption: "Sree Vaaraahi Gardens — Master Layout Plan (381 Plots)" },
+      { src: "/projects/sree-vaaraahi-gardens/page2.jpg", caption: "For Sale — Premium Residential Plots near Kurmannapalem" },
+      { src: "/projects/sree-vaaraahi-gardens/page3.png", caption: "Site View — Surrounding Neighbourhood" },
+      { src: "/projects/sree-vaaraahi-gardens/page4.png", caption: "Site View — Plot Area & Development" },
+      { src: "/projects/sree-vaaraahi-gardens/page5.jpg", caption: "Premium Residential Plots — NGK Infra Developers, Gajuwaka" },
+    ],
   },
 };
 
