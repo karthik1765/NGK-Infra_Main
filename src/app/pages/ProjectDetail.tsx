@@ -62,12 +62,7 @@ const PROJECT_DATA = {
       "Security Guard Facility for 3 Years by Company",
     ],
     coverImage: "/projects/sree-vaaraahi-gardens/page5.jpg",
-    gallery: [
-      { src: "/projects/sree-vaaraahi-gardens/page1.jpg", caption: "Sree Vaaraahi Gardens — Master Layout Plan (381 Plots)" },
-      { src: "/projects/sree-vaaraahi-gardens/page3.png", caption: "Site View — Surrounding Neighbourhood" },
-      { src: "/projects/sree-vaaraahi-gardens/page4.png", caption: "Site View — Plot Area & Development" },
-
-    ],
+    gallery: [],
   },
 };
 
@@ -294,6 +289,7 @@ export default function ProjectDetail() {
               </ul>
             </div>
 
+            {project.gallery.length > 0 && (
             <div className="bg-white border border-[#E5E7EB] p-8 rounded-sm">
               <div className="h-0.5 w-8 bg-primary mb-5" />
               <div className="flex items-center justify-between mb-6">
@@ -321,6 +317,7 @@ export default function ProjectDetail() {
               </div>
               <p className="text-center text-xs text-[#9CA3AF] mt-3">Auto-scrolls every 4 seconds · Click any photo for full-screen gallery · Use arrow keys to navigate</p>
             </div>
+            )}
           </div>
 
           <div className="space-y-6">
