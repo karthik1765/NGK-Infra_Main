@@ -60,6 +60,11 @@ const PROJECT_5_GALLERY = [
   { src: "/projects/ngk-project-5/page2.png", caption: "Typical Master Layout Plan — Vishal Estates Phase-III" },
 ];
 
+const PROJECT_2_GALLERY = [
+  { src: "/projects/ngk-project-2/page1.jpg", caption: "Site Developments & Location Highlights — 330 Feet NH-16 Facing" },
+  { src: "/projects/ngk-project-2/page2.jpg", caption: "Typical Master Layout Plan — 330 Feet Road NH-16" },
+];
+
 const PROJECTS = [
   {
     name: "NGK Project 1",
@@ -76,14 +81,16 @@ const PROJECTS = [
   },
   {
     name: "NGK Project 2",
-    location: "VIZAG",
-    type: "Luxury Villas",
-    units: "32 Villas",
-    area: "8.26 Acres",
-    config: "4BHK + Home Theatre",
-    tag: "Premium Gated Community",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=560&fit=crop&auto=format",
-    status: "Ready to Move",
+    location: "Vempadam Village, Bhogapuram, Visakhapatnam",
+    type: "VMRDA Approved Plots – 330 Feet NH-16 Facing",
+    units: "Plots Available",
+    area: "Spacious Layout",
+    config: "Multiple Sizes",
+    tag: "Direct Highway Facing 330 Feet NH-16",
+    image: "/projects/ngk-project-2/page1.jpg",
+    status: "Ongoing",
+    slug: "nh16-highway-plots",
+    gallery: PROJECT_2_GALLERY,
   },
   {
     name: "NGK Project 3",
