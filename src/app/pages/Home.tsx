@@ -55,6 +55,11 @@ const VISHAL_GALLERY = [
   { src: "/projects/vishal-estates-phase2/page7.jpg", caption: "Additional Details" },
 ];
 
+const PROJECT_5_GALLERY = [
+  { src: "/projects/ngk-project-5/page1.jpg", caption: "Site Developments & Location Highlights — Vishal Estates Phase-III" },
+  { src: "/projects/ngk-project-5/page2.png", caption: "Typical Master Layout Plan — Vishal Estates Phase-III" },
+];
+
 const PROJECTS = [
   {
     name: "NGK Project 1",
@@ -112,14 +117,16 @@ const PROJECTS = [
   },
   {
     name: "NGK Project 5",
-    location: "Gajuwaka, Vizag",
-    type: "Residential Apartment",
-    units: "96 Flats",
-    area: "1.8 Acres",
-    config: "2 & 3 BHK",
-    tag: "Completed",
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=560&fit=crop&auto=format",
-    status: "Completed",
+    location: "Vempadam Village, Bhogapuram, Visakhapatnam",
+    type: "Open Plots – Vishal Estates Phase-III",
+    units: "Plots Available",
+    area: "Spacious Layout",
+    config: "Multiple Sizes",
+    tag: "Very close to Bhogapuram Airport",
+    image: "/projects/ngk-project-5/page1.jpg",
+    status: "Ongoing",
+    slug: "vishal-estates-phase-3",
+    gallery: PROJECT_5_GALLERY,
   },
   {
     name: "NGK Project 6",

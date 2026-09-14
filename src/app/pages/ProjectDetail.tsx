@@ -70,10 +70,41 @@ const PROJECT_DATA = {
       { src: "/projects/sree-vaaraahi-gardens/page5.jpg", caption: "Premium Residential Plots — NGK Infra Developers, Gajuwaka" },
     ],
   },
+  "vishal-estates-phase-3": {
+    name: "NGK Project 5",
+    subtitle: "To Live In Peace Is To Have Nature Up-close!",
+    location: "Vempadam Village, Bhogapuram Visakhapatnam",
+    type: "Open Plots – Vishal Estates Phase-III",
+    units: "Plots Available",
+    area: "Spacious Layout",
+    config: "Multiple Sizes",
+    status: "Ongoing",
+    tag: "Very close to Bhogapuram Airport",
+    desc: "NGK Project 5 (Vishal Estates Phase-III) is a selective venture raised amidst greenery near Bhogapuram Airport — a beautiful spot far from pollution with perfect Vastu, 100% legal clearance, and world-class site developments like Club House, Swimming Pool, Open Auditorium, and extensive sports facilities.",
+    highlights: [
+      "Very close to Bhogapuram International Airport",
+      "2.5 km Distance to NH-16 & Miracle City",
+      "Club House & Swimming Pool",
+      "Open Auditorium & Outdoor Games (Net Cricket, Volleyball, Pickleball)",
+      "Indoor Games (Snooker, Table Tennis, Chess, Carroms)",
+      "Avenue Plantation & Beautiful Open Parks",
+      "Black Top Roads, Open Drains & Electricity",
+      "100% Vaastu Compliant & Compound Wall",
+      "15 min drive to Vizianagaram & NRI Medical College",
+      "10 min drive to Tagarapuvalasa & 20 min drive to Bheemili Beach",
+      "Surrounded by many Engineering colleges & International Schools",
+      "Bank Loan Facility Available",
+    ],
+    coverImage: "/projects/ngk-project-5/page1.jpg",
+    gallery: [
+      { src: "/projects/ngk-project-5/page1.jpg", caption: "Site Developments & Location Highlights — Vishal Estates Phase-III" },
+      { src: "/projects/ngk-project-5/page2.png", caption: "Typical Master Layout Plan — Vishal Estates Phase-III" },
+    ],
+  },
 };
 
 /* ────────── Auto-scroll Carousel ────────── */
-function AutoCarousel({ images, onImageClick }) {
+function AutoCarousel({ images }: { images: { src: string; caption: string }[], onImageClick: (i: number) => void }) {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
